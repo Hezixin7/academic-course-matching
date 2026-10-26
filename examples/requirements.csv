@@ -1,0 +1,5 @@
+﻿"id","name","required_ects","description"
+"MATH","数学基础","12","Mathematical foundations including calculus, differentiation and integration, linear algebra, vector spaces, matrices, eigenvalues and mathematical analysis."
+"STAT","概率与统计","9","Probability and statistics: random variables, distributions, statistical estimation, hypothesis testing, regression, statistical learning and model evaluation."
+"CS","计算机科学基础","12","Computer science fundamentals: programming, data structures, algorithms, complexity analysis, software engineering, software testing and implementation of algorithms."
+"DATA","数据管理","6","Data management and databases: relational data modeling, SQL, relational algebra, normalization, transactions, indexing and database systems."

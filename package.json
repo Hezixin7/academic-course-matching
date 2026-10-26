@@ -1,0 +1,36 @@
+{
+  "name": "academic-course-matching-copilot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/download-model.mjs",
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/server.mjs",
+    "pretest": "npm run build",
+    "test": "node --test tests/*.test.mjs",
+    "test:core": "node --test tests/core.test.mjs",
+    "eval": "node scripts/evaluate.mjs",
+    "eval:llm": "node scripts/evaluate.mjs --llm",
+    "bootstrap": "node scripts/install.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.1",
+    "pdfjs-dist": "5.4.296",
+    "mammoth": "1.13.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.11",
+    "happy-dom": "20.14.6",
+    "@napi-rs/canvas": "0.1.100"
+  },
+  "version": "0.2.0",
+  "description": "Two-stage LLM course matching with grounded citations, human review, deterministic credit allocation and reproducible evaluation.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "license": "MIT",
+  "overrides": {
+    "argparse": "2.0.1"
+  }
+}

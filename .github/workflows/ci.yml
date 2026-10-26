@@ -1,0 +1,22 @@
+name: Verify project
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      ONNXRUNTIME_NODE_INSTALL: skip
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Cache quantized model
+        uses: actions/cache@v4
+        with:
+          path: models
+          key: minilm-${{ hashFiles('model-manifest.json') }}
+      - run: npm run setup
+      - run: npm test
+      - run: npm run eval -- --split=test

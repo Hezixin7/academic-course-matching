@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-17",
+  "version": "0.2.0",
+  "node": "24.19.0",
+  "checks": {
+    "clean_cpu_install": "passed",
+    "model_checksums": "passed",
+    "build": "passed",
+    "automated_tests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "dev_http_start": "passed",
+    "unconfigured_llm_fails_closed": "passed",
+    "dependency_audit": {
+      "known_vulnerabilities": 0
+    },
+    "retrieval_evaluation": "synthetic dev/test seed completed",
+    "live_llm_inference": "not_run: no user API key",
+    "real_browser_qa": "not_run: browser automation unavailable"
+  }
+}

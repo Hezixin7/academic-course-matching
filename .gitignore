@@ -1,0 +1,11 @@
+node_modules/
+dist/
+models/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+coverage/
+.data/
+eval/results/*live*.json

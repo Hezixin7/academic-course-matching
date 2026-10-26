@@ -1,0 +1,735 @@
+{
+  "version": 1,
+  "provenance": "Manually authored synthetic regression seed by the project authoring assistant; NOT real university data, NOT expert-validated. Gold negatives default to no_match and positives were explicitly assigned. Review labels before using for model selection.",
+  "splitPolicy": "8 development courses and 8 distinct test courses. Do not tune thresholds on the test split.",
+  "modules": [
+    {
+      "id": "MATH",
+      "name": "Linear Algebra",
+      "required_ects": 6,
+      "description": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
+    },
+    {
+      "id": "STAT",
+      "name": "Probability and Statistics",
+      "required_ects": 6,
+      "description": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
+    },
+    {
+      "id": "CS",
+      "name": "Algorithms and Data Structures",
+      "required_ects": 6,
+      "description": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
+    },
+    {
+      "id": "DATA",
+      "name": "Database Systems",
+      "required_ects": 6,
+      "description": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
+    },
+    {
+      "id": "ML",
+      "name": "Machine Learning",
+      "required_ects": 6,
+      "description": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
+    },
+    {
+      "id": "SE",
+      "name": "Software Engineering",
+      "required_ects": 6,
+      "description": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
+    }
+  ],
+  "courses": [
+    {
+      "id": "d1",
+      "split": "dev",
+      "name": "Linear Algebra",
+      "description": "Vector spaces, matrices, systems of linear equations, eigenvalues and eigenvectors. Singular value decomposition and matrix factorizations.",
+      "credits": 4
+    },
+    {
+      "id": "d2",
+      "split": "dev",
+      "name": "Probability and Statistics",
+      "description": "Random variables and distributions. Statistical estimation, confidence intervals, hypothesis tests and linear regression.",
+      "credits": 4
+    },
+    {
+      "id": "d3",
+      "split": "dev",
+      "name": "Data Structures",
+      "description": "Trees, graphs, hash tables, sorting and searching. Graph traversal algorithms and asymptotic time and space complexity analysis.",
+      "credits": 4
+    },
+    {
+      "id": "d4",
+      "split": "dev",
+      "name": "Database Systems",
+      "description": "Relational data modeling, SQL queries, normalization and transactions. Indexing and practical database design with a SQL project.",
+      "credits": 4
+    },
+    {
+      "id": "d5",
+      "split": "dev",
+      "name": "Machine Learning",
+      "description": "Supervised classification and regression. Model selection, cross-validation and generalization evaluation. Implement learning algorithms and linear regression in Python.",
+      "credits": 4
+    },
+    {
+      "id": "d6",
+      "split": "dev",
+      "name": "Software Engineering",
+      "description": "Requirements analysis and modular software design. Version control, unit and integration testing and a team software development project.",
+      "credits": 4
+    },
+    {
+      "id": "d7",
+      "split": "dev",
+      "name": "Data Visualization",
+      "description": "Color theory, chart types, dashboards and visual communication. Students create interactive plots and present visual stories from existing data.",
+      "credits": 4
+    },
+    {
+      "id": "d8",
+      "split": "dev",
+      "name": "Introduction to Probability",
+      "description": "Random variables, discrete and continuous probability distributions and conditional probability. No statistical estimation or hypothesis testing is taught.",
+      "credits": 4
+    },
+    {
+      "id": "t1",
+      "split": "test",
+      "name": "Mathematical Methods",
+      "description": "Vector spaces and matrix algebra, linear systems, eigenvectors and eigenvalues. Matrix factorizations and numerical applications.",
+      "credits": 4
+    },
+    {
+      "id": "t2",
+      "split": "test",
+      "name": "Statistical Inference",
+      "description": "Probability distributions and random variables, parameter estimation, confidence intervals, hypothesis testing and regression analysis.",
+      "credits": 4
+    },
+    {
+      "id": "t3",
+      "split": "test",
+      "name": "Efficient Algorithms",
+      "description": "Asymptotic complexity analysis, sorting, search, trees, graph algorithms and hash tables. Implementation and analysis of efficient algorithms.",
+      "credits": 4
+    },
+    {
+      "id": "t4",
+      "split": "test",
+      "name": "Information Management",
+      "description": "Conceptual entity-relationship diagrams and relational modeling. Students discuss normalization. SQL programming, transactions and indexing are outside this course.",
+      "credits": 4
+    },
+    {
+      "id": "t5",
+      "split": "test",
+      "name": "Deep Learning",
+      "description": "Neural network classification and regression using gradient descent and backpropagation. Model selection and cross-validation are not covered.",
+      "credits": 4
+    },
+    {
+      "id": "t6",
+      "split": "test",
+      "name": "Software Testing",
+      "description": "Unit testing, integration testing, test case design and automated test execution. Software requirements and modular architecture are outside the scope.",
+      "credits": 4
+    },
+    {
+      "id": "t7",
+      "split": "test",
+      "name": "History of Computing",
+      "description": "Historical development of computing institutions, biographies of pioneers and social impacts of digital technology. No technical programming or algorithm implementation.",
+      "credits": 4
+    },
+    {
+      "id": "t8",
+      "split": "test",
+      "name": "Python Programming",
+      "description": "Variables, loops, functions, object-oriented syntax, debugging and basic scripts. The course does not cover data structures, algorithm analysis or software project design.",
+      "credits": 4
+    }
+  ],
+  "labels": [
+    {
+      "courseId": "d1",
+      "moduleId": "MATH",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d1",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d1",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d1",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d1",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d1",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "STAT",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d2",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "CS",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d3",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "DATA",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d4",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "STAT",
+      "decision": "partial",
+      "rationale": "Some target topics are documented, while important requirements are explicitly absent."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "ML",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d5",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d6",
+      "moduleId": "SE",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d7",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "STAT",
+      "decision": "partial",
+      "rationale": "Some target topics are documented, while important requirements are explicitly absent."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "d8",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "MATH",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t1",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "STAT",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t2",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "CS",
+      "decision": "match",
+      "rationale": "The provided description substantially covers the target topics."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t3",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "DATA",
+      "decision": "partial",
+      "rationale": "Some target topics are documented, while important requirements are explicitly absent."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t4",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "ML",
+      "decision": "partial",
+      "rationale": "Some target topics are documented, while important requirements are explicitly absent."
+    },
+    {
+      "courseId": "t5",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t6",
+      "moduleId": "SE",
+      "decision": "partial",
+      "rationale": "Some target topics are documented, while important requirements are explicitly absent."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t7",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "MATH",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "STAT",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "CS",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "DATA",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "ML",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    },
+    {
+      "courseId": "t8",
+      "moduleId": "SE",
+      "decision": "no_match",
+      "rationale": "The documented scope does not substantively cover this target module."
+    }
+  ]
+}
