@@ -1,6 +1,6 @@
 # Academic Course Matching Copilot · LLM Edition
 
-**面向申请材料审核的两阶段 LLM 应用：课程描述语义召回 → LLM 成对判定 → 原文证据校验 → 人工复核 → 确定性学分分配。**
+**面向中国本科申请德国硕士课程匹配材料审核的两阶段 LLM 应用：课程描述语义召回 → LLM 成对判定 → 原文证据校验 → 人工复核 → 确定性学分分配。**
 
 前端、Node.js 后端、模型文件、示例资料、Prompt、校验器、测试与评测脚本均包含在项目中，可以放到自己的 GitHub 并独立运行。
 
@@ -18,7 +18,7 @@ npm run setup
 
 `bootstrap` 使用锁文件安装依赖，并通过标准环境变量跳过不需要的 CUDA 下载。它替代旧版有 npm 配置警告的安装方式。ZIP 附带 MiniLM 权重，`setup` 会校验 SHA-256；从 GitHub 克隆时会下载缺失权重。
 
-复制 `.env.example` 为 `.env`，用编辑器在 **你自己的电脑** 填写密钥：
+复制 `.env.example` 为 `.env`，用编辑器在 **自己的电脑** 填写密钥：
 
 ```dotenv
 LLM_API_BASE=https://api.deepseek.com
@@ -136,30 +136,13 @@ tests/                   单元、模型、HTTP 与交互集成测试
 docs/                    架构、API、评测、验收和简历说明
 ```
 
-## 放进自己的 GitHub
 
-新建空仓库，在项目目录执行：
-
-```bash
-git init
-git add .
-git commit -m "Add two-stage LLM course matching application"
-git branch -M main
-# 将下一行替换成自己的实际仓库地址后执行
-# git remote add origin https://github.com/YOUR_USERNAME/academic-course-matching-copilot.git
-# git push -u origin main
-```
-
-默认忽略依赖、构建产物、模型权重、`.env`、`.data` 与 live 评测结果；提交源码、锁文件、模型清单、公开合成数据和测试。GitHub Actions 只运行无需密钥的测试与检索评测，不会产生模型调用费用。不要提交真实成绩单或个人材料。
-
-## 项目说明与许可
+## 项目说明
 
 - [架构与取舍](docs/ARCHITECTURE.md)
 - [API 与错误处理](docs/API.md)
 - [评测结果及边界](docs/EVALUATION.md)
-- [验收清单](docs/VALIDATION.md)
-- [简历与面试准备](docs/PORTFOLIO.md)
-- [变更记录](CHANGELOG.md)
+
 
 自有代码 MIT；第三方模型/库保留各自许可证，见 `licenses/`。模型固定版本与校验和见 `model-manifest.json`。
 
