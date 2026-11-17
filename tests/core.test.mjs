@@ -42,70 +42,84 @@ test("uploaded CSV and JSON preserve description commas, quotes, multilingual na
     /重复/,
   );
 });
-test("deterministic edits split and reallocate credits without embedding calls or double counting", () => {
+test("deterministic edits enforce single-module, full-course allocation without double counting", () => {
   const courses = cs(),
     mods = DEMO.requirements;
+  // One course per target module, each allocated in full.
   const edges = [
-    { id: "a", courseId: "CS101", moduleId: "CS", ects: 4, status: "pending" },
+    { id: "a", courseId: "CS101", moduleId: "CS", ects: 6, status: "pending" },
     {
       id: "b",
-      courseId: "CS101",
-      moduleId: "MATH",
-      ects: 2,
-      status: "confirmed",
-    },
-    {
-      id: "c",
       courseId: "MA101",
       moduleId: "MATH",
       ects: 7.5,
-      status: "pending",
+      status: "confirmed",
     },
   ];
   const t = calculate(courses, mods, edges, 1.5);
   assert.equal(t.totals.CS101, 6);
+  assert.equal(t.totals.MA101, 7.5);
   assert.equal(t.allocated, 13.5);
-  assert.equal(t.confirmed, 2);
-  assert.equal(t.modules.MATH.allocated, 9.5);
-  const edited = edges.map((e) => (e.id === "a" ? { ...e, ects: 3.25 } : e));
-  const after = calculate(courses, mods, edited, 1.5);
-  assert.equal(after.allocated, 12.75);
-  assert.equal(after.unallocated, t.unallocated + 0.75);
-  assert.equal(after.modules.CS.allocated, 3.25);
-  assert.throws(
-    () =>
-      calculate(courses, mods, [
-        ...edges,
-        {
-          id: "x",
-          courseId: "CS101",
-          moduleId: "STAT",
-          ects: 0.01,
-          status: "pending",
-        },
-      ]),
-    /超过可用/,
+  assert.equal(t.confirmed, 7.5);
+  assert.equal(t.modules.CS.allocated, 6);
+  assert.equal(t.modules.MATH.allocated, 7.5);
+  assert.equal(t.modules.MATH.confirmed, 7.5);
+  assert.equal(t.pending, 1);
+  // Credit conservation: allocated + unallocated = available.
+  assert.equal(t.allocated + t.unallocated, t.available);
+  // Manual module reassignment is allowed while keeping the full course budget.
+  const reassigned = edges.map((e) =>
+    e.id === "a" ? { ...e, moduleId: "STAT" } : e,
   );
+  const moved = calculate(courses, mods, reassigned, 1.5);
+  assert.equal(moved.totals.CS101, 6);
+  assert.equal(moved.modules.CS.allocated, 0);
+  assert.equal(moved.modules.STAT.allocated, 6);
+  assert.equal(moved.allocated, t.allocated);
+  // A course may stay unallocated (0) and can be allocated in full again.
+  const cleared = edges.map((e) => (e.id === "a" ? { ...e, ects: 0 } : e));
+  const zeroed = calculate(courses, mods, cleared, 1.5);
+  assert.equal(zeroed.totals.CS101, 0);
+  assert.equal(zeroed.allocated, 7.5);
+  assert.equal(zeroed.unallocated, t.unallocated + 6);
+  assert.equal(calculate(courses, mods, edges, 1.5).allocated, t.allocated);
+  // Splitting one course across two target modules is rejected.
   assert.throws(
     () =>
       calculate(courses, mods, [
-        ...edges,
+        { ...edges[0], ects: 4 },
         {
-          id: "x",
+          id: "split",
           courseId: "CS101",
-          moduleId: "CS",
-          ects: 0,
+          moduleId: "MATH",
+          ects: 2,
           status: "pending",
         },
-      ]),
+      ], 1.5),
+    /多个目标模块/,
+  );
+  // Partial allocation of a course is rejected.
+  assert.throws(
+    () => calculate(courses, mods, [{ ...edges[0], ects: 5.5 }], 1.5),
+    /只能分配 0 或 6/,
+  );
+  // Duplicate edges and exceeding the course budget are rejected.
+  assert.throws(
+    () =>
+      calculate(courses, mods, [edges[0], { ...edges[0], id: "dup" }], 1.5),
     /只能保留/,
   );
   assert.throws(
-    () => calculate(courses, mods, [{ ...edges[0], ects: NaN }]),
+    () => calculate(courses, mods, [{ ...edges[0], ects: 6.01 }], 1.5),
+    /超过可用/,
+  );
+  // Invalid amounts remain rejected.
+  assert.throws(
+    () => calculate(courses, mods, [{ ...edges[0], ects: NaN }], 1.5),
     /非负数/,
   );
   assert.throws(
-    () => calculate(courses, mods, [{ ...edges[0], ects: 2.001 }]),
+    () => calculate(courses, mods, [{ ...edges[0], ects: 6.001 }], 1.5),
     /两位小数/,
   );
   assert.equal(calculate(courses, mods, [], 1).available, 28);

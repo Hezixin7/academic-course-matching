@@ -7,18 +7,21 @@ env.backends.onnx.wasm.numThreads = 1;
 env.backends.onnx.wasm.proxy = false;
 let model;
 self.onmessage = async ({ data }) => {
+  // 加载模型、生成向量、执行匹配
   try {
     self.postMessage({
       type: "progress",
       text: "正在加载本地语义模型（首次约 23 MB）…",
     });
     if (!model)
+      // 加载 MiniLM - 用到的模型 输出是384维向量
       model = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", {
-        dtype: "q8",
+        dtype: "q8", //8-bit 量化模型 1字节
         device: "wasm",
       });
     const embed = async (texts) => {
       const all = [];
+      // Batch Embedding
       for (let i = 0; i < texts.length; i += 8) {
         self.postMessage({
           type: "progress",
@@ -32,10 +35,11 @@ self.onmessage = async ({ data }) => {
       }
       return all;
     };
+    // 把 Embedding 函数传给 core.js
     const result = await matchCourses(
       data.courses,
       data.modules,
-      embed,
+      embed, // function
       data.factor,
       (text) => self.postMessage({ type: "progress", text }),
     );

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T15:24:37.982Z",
+  "generatedAt": "2026-11-17T13:25:27.255Z",
   "dataset": "eval/data/seed.json",
   "provenance": "Manually authored synthetic regression seed by the project authoring assistant; NOT real university data, NOT expert-validated. Gold negatives default to no_match and positives were explicitly assigned. Review labels before using for model selection.",
   "split": "test",
@@ -38,21 +38,21 @@
       {
         "courseId": "t1",
         "moduleId": "MATH",
-        "score": 0.7698795108064355,
+        "score": 0.7693555987641773,
         "evidence": "Vector spaces and matrix algebra, linear systems, eigenvectors and eigenvalues.  Matrix factorizations and numerical applications.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       },
       {
         "courseId": "t1",
         "moduleId": "CS",
-        "score": 0.21590478081050618,
+        "score": 0.21021217524440453,
         "evidence": "Vector spaces and matrix algebra, linear systems, eigenvectors and eigenvalues.  Matrix factorizations and numerical applications.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "t1",
         "moduleId": "ML",
-        "score": 0.17534565581911102,
+        "score": 0.1703048509550689,
         "evidence": "Vector spaces and matrix algebra, linear systems, eigenvectors and eigenvalues.  Matrix factorizations and numerical applications.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       }
@@ -61,44 +61,44 @@
       {
         "courseId": "t2",
         "moduleId": "STAT",
-        "score": 0.9471247027848507,
+        "score": 0.9500743936772065,
         "evidence": "Probability distributions and random variables, parameter estimation, confidence intervals, hypothesis testing and regression analysis.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "t2",
-        "moduleId": "ML",
-        "score": 0.35340726425746805,
+        "moduleId": "SE",
+        "score": 0.36655064701080975,
         "evidence": "Probability distributions and random variables, parameter estimation, confidence intervals, hypothesis testing and regression analysis.",
-        "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
+        "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       },
       {
         "courseId": "t2",
-        "moduleId": "SE",
-        "score": 0.34794283662043773,
+        "moduleId": "ML",
+        "score": 0.3608097140715755,
         "evidence": "Probability distributions and random variables, parameter estimation, confidence intervals, hypothesis testing and regression analysis.",
-        "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
+        "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       }
     ],
     "t3": [
       {
         "courseId": "t3",
         "moduleId": "CS",
-        "score": 0.8528546457783289,
+        "score": 0.8516286524875276,
         "evidence": "Asymptotic complexity analysis, sorting, search, trees, graph algorithms and hash tables.  Implementation and analysis of efficient algorithms.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "t3",
         "moduleId": "DATA",
-        "score": 0.4096085570971171,
+        "score": 0.39713391753836025,
         "evidence": "Asymptotic complexity analysis, sorting, search, trees, graph algorithms and hash tables.  Implementation and analysis of efficient algorithms.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       },
       {
         "courseId": "t3",
         "moduleId": "MATH",
-        "score": 0.25030797700068763,
+        "score": 0.23456082485754917,
         "evidence": "Asymptotic complexity analysis, sorting, search, trees, graph algorithms and hash tables.  Implementation and analysis of efficient algorithms.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -107,21 +107,21 @@
       {
         "courseId": "t4",
         "moduleId": "DATA",
-        "score": 0.6370968447493811,
+        "score": 0.6298585832334468,
         "evidence": "Conceptual entity-relationship diagrams and relational modeling.  Students discuss normalization.  SQL programming, transactions and indexing are outside this course.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       },
       {
         "courseId": "t4",
         "moduleId": "CS",
-        "score": 0.3509829618361381,
+        "score": 0.3390239397361635,
         "evidence": "Conceptual entity-relationship diagrams and relational modeling.  Students discuss normalization.  SQL programming, transactions and indexing are outside this course.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "t4",
         "moduleId": "SE",
-        "score": 0.3033206292281168,
+        "score": 0.3017277461252223,
         "evidence": "Conceptual entity-relationship diagrams and relational modeling.  Students discuss normalization.  SQL programming, transactions and indexing are outside this course.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       }
@@ -130,21 +130,21 @@
       {
         "courseId": "t5",
         "moduleId": "ML",
-        "score": 0.6428583541869908,
+        "score": 0.6423651705751314,
         "evidence": "Neural network classification and regression using gradient descent and backpropagation.  Model selection and cross-validation are not covered.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       },
       {
         "courseId": "t5",
         "moduleId": "MATH",
-        "score": 0.26912167645209595,
+        "score": 0.26347933971740867,
         "evidence": "Neural network classification and regression using gradient descent and backpropagation.  Model selection and cross-validation are not covered.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       },
       {
         "courseId": "t5",
         "moduleId": "STAT",
-        "score": 0.259913054156216,
+        "score": 0.24958808136283878,
         "evidence": "Neural network classification and regression using gradient descent and backpropagation.  Model selection and cross-validation are not covered.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       }
@@ -153,21 +153,21 @@
       {
         "courseId": "t6",
         "moduleId": "SE",
-        "score": 0.7429547706212323,
+        "score": 0.7400251576880948,
         "evidence": "Unit testing, integration testing, test case design and automated test execution.  Software requirements and modular architecture are outside the scope.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       },
       {
         "courseId": "t6",
         "moduleId": "STAT",
-        "score": 0.2687147682577922,
+        "score": 0.27087720931253806,
         "evidence": "Unit testing, integration testing, test case design and automated test execution.  Software requirements and modular architecture are outside the scope.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "t6",
         "moduleId": "MATH",
-        "score": 0.23179690120429194,
+        "score": 0.23063190389648183,
         "evidence": "Unit testing, integration testing, test case design and automated test execution.  Software requirements and modular architecture are outside the scope.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -176,21 +176,21 @@
       {
         "courseId": "t7",
         "moduleId": "CS",
-        "score": 0.3380735746858328,
+        "score": 0.3176882533046824,
         "evidence": "Historical development of computing institutions, biographies of pioneers and social impacts of digital technology.  No technical programming or algorithm implementation.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "t7",
         "moduleId": "MATH",
-        "score": 0.2533323452227611,
+        "score": 0.25453373536701546,
         "evidence": "Historical development of computing institutions, biographies of pioneers and social impacts of digital technology.  No technical programming or algorithm implementation.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       },
       {
         "courseId": "t7",
         "moduleId": "DATA",
-        "score": 0.2274750372934823,
+        "score": 0.22285403394259848,
         "evidence": "Historical development of computing institutions, biographies of pioneers and social impacts of digital technology.  No technical programming or algorithm implementation.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       }
@@ -199,21 +199,21 @@
       {
         "courseId": "t8",
         "moduleId": "SE",
-        "score": 0.4602379521095873,
+        "score": 0.4719987687023099,
         "evidence": "Variables, loops, functions, object-oriented syntax, debugging and basic scripts.  The course does not cover data structures, algorithm analysis or software project design.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       },
       {
         "courseId": "t8",
         "moduleId": "MATH",
-        "score": 0.40998580281414915,
+        "score": 0.4093240525544454,
         "evidence": "Variables, loops, functions, object-oriented syntax, debugging and basic scripts.  The course does not cover data structures, algorithm analysis or software project design.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       },
       {
         "courseId": "t8",
         "moduleId": "CS",
-        "score": 0.3794885050319732,
+        "score": 0.3672600294797611,
         "evidence": "Variables, loops, functions, object-oriented syntax, debugging and basic scripts.  The course does not cover data structures, algorithm analysis or software project design.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       }

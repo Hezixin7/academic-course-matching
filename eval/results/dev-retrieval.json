@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T15:18:12.313Z",
+  "generatedAt": "2026-11-17T13:25:26.889Z",
   "dataset": "eval/data/seed.json",
   "provenance": "Manually authored synthetic regression seed by the project authoring assistant; NOT real university data, NOT expert-validated. Gold negatives default to no_match and positives were explicitly assigned. Review labels before using for model selection.",
   "split": "dev",
@@ -38,21 +38,21 @@
       {
         "courseId": "d1",
         "moduleId": "MATH",
-        "score": 0.7732542922695629,
+        "score": 0.7732542865113974,
         "evidence": "Vector spaces, matrices, systems of linear equations, eigenvalues and eigenvectors.  Singular value decomposition and matrix factorizations.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       },
       {
         "courseId": "d1",
         "moduleId": "ML",
-        "score": 0.23996287189615825,
+        "score": 0.23996286749455126,
         "evidence": "Vector spaces, matrices, systems of linear equations, eigenvalues and eigenvectors.  Singular value decomposition and matrix factorizations.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       },
       {
         "courseId": "d1",
         "moduleId": "CS",
-        "score": 0.2087748155708804,
+        "score": 0.20877479435507787,
         "evidence": "Vector spaces, matrices, systems of linear equations, eigenvalues and eigenvectors.  Singular value decomposition and matrix factorizations.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       }
@@ -61,21 +61,21 @@
       {
         "courseId": "d2",
         "moduleId": "STAT",
-        "score": 0.8964447181970442,
+        "score": 0.8964439396522297,
         "evidence": "Random variables and distributions.  Statistical estimation, confidence intervals, hypothesis tests and linear regression.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "d2",
         "moduleId": "ML",
-        "score": 0.2880232014543202,
+        "score": 0.28802317285472834,
         "evidence": "Random variables and distributions.  Statistical estimation, confidence intervals, hypothesis tests and linear regression.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       },
       {
         "courseId": "d2",
         "moduleId": "MATH",
-        "score": 0.22781147921406,
+        "score": 0.22781145591820667,
         "evidence": "Random variables and distributions.  Statistical estimation, confidence intervals, hypothesis tests and linear regression.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -84,21 +84,21 @@
       {
         "courseId": "d3",
         "moduleId": "CS",
-        "score": 0.8544803221470265,
+        "score": 0.8544803182789265,
         "evidence": "Trees, graphs, hash tables, sorting and searching.  Graph traversal algorithms and asymptotic time and space complexity analysis.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "d3",
         "moduleId": "DATA",
-        "score": 0.4045244492330974,
+        "score": 0.4045244404929397,
         "evidence": "Trees, graphs, hash tables, sorting and searching.  Graph traversal algorithms and asymptotic time and space complexity analysis.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       },
       {
         "courseId": "d3",
         "moduleId": "MATH",
-        "score": 0.2946653297703904,
+        "score": 0.2946653144671953,
         "evidence": "Trees, graphs, hash tables, sorting and searching.  Graph traversal algorithms and asymptotic time and space complexity analysis.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -107,21 +107,21 @@
       {
         "courseId": "d4",
         "moduleId": "DATA",
-        "score": 0.9264872565366137,
+        "score": 0.9264872579090153,
         "evidence": "Relational data modeling, SQL queries, normalization and transactions.  Indexing and practical database design with a SQL project.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       },
       {
         "courseId": "d4",
         "moduleId": "CS",
-        "score": 0.4126973259025038,
+        "score": 0.4126973091160879,
         "evidence": "Relational data modeling, SQL queries, normalization and transactions.  Indexing and practical database design with a SQL project.",
         "requirementEvidence": "Data structures including trees, graphs and hash tables; sorting, searching, graph algorithms and asymptotic complexity analysis."
       },
       {
         "courseId": "d4",
         "moduleId": "SE",
-        "score": 0.24584438411553503,
+        "score": 0.24584433814087553,
         "evidence": "Relational data modeling, SQL queries, normalization and transactions.  Indexing and practical database design with a SQL project.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       }
@@ -130,21 +130,21 @@
       {
         "courseId": "d5",
         "moduleId": "ML",
-        "score": 0.7145969238252662,
+        "score": 0.7145969359149024,
         "evidence": "Supervised classification and regression.  Model selection, cross-validation and generalization evaluation.  Implement learning algorithms and linear regression in Python.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       },
       {
         "courseId": "d5",
         "moduleId": "STAT",
-        "score": 0.4010880146906773,
+        "score": 0.40108510764561245,
         "evidence": "Supervised classification and regression.  Model selection, cross-validation and generalization evaluation.  Implement learning algorithms and linear regression in Python.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "d5",
         "moduleId": "MATH",
-        "score": 0.35958228728211017,
+        "score": 0.3595822765686875,
         "evidence": "Supervised classification and regression.  Model selection, cross-validation and generalization evaluation.  Implement learning algorithms and linear regression in Python.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -153,21 +153,21 @@
       {
         "courseId": "d6",
         "moduleId": "SE",
-        "score": 0.896455749359524,
+        "score": 0.8964557595161167,
         "evidence": "Requirements analysis and modular software design.  Version control, unit and integration testing and a team software development project.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       },
       {
         "courseId": "d6",
         "moduleId": "DATA",
-        "score": 0.23374079826617528,
+        "score": 0.23374078138555468,
         "evidence": "Requirements analysis and modular software design.  Version control, unit and integration testing and a team software development project.",
         "requirementEvidence": "Relational data models, SQL queries, normalization, transactions, indexing and practical database design."
       },
       {
         "courseId": "d6",
         "moduleId": "STAT",
-        "score": 0.16986449378958274,
+        "score": 0.16986845052014646,
         "evidence": "Requirements analysis and modular software design.  Version control, unit and integration testing and a team software development project.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       }
@@ -176,21 +176,21 @@
       {
         "courseId": "d7",
         "moduleId": "SE",
-        "score": 0.2788410448436457,
+        "score": 0.27884100933941386,
         "evidence": "Color theory, chart types, dashboards and visual communication.  Students create interactive plots and present visual stories from existing data.",
         "requirementEvidence": "Software requirements analysis, modular design, version control, unit testing, integration testing and team software development."
       },
       {
         "courseId": "d7",
         "moduleId": "STAT",
-        "score": 0.261413618871505,
+        "score": 0.26141238530451927,
         "evidence": "Color theory, chart types, dashboards and visual communication.  Students create interactive plots and present visual stories from existing data.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "d7",
         "moduleId": "MATH",
-        "score": 0.25454926188736776,
+        "score": 0.25454924133359075,
         "evidence": "Color theory, chart types, dashboards and visual communication.  Students create interactive plots and present visual stories from existing data.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }
@@ -199,21 +199,21 @@
       {
         "courseId": "d8",
         "moduleId": "STAT",
-        "score": 0.7418824626830031,
+        "score": 0.7418857966584723,
         "evidence": "Random variables, discrete and continuous probability distributions and conditional probability.  No statistical estimation or hypothesis testing is taught.",
         "requirementEvidence": "Random variables and probability distributions, statistical estimation, confidence intervals, hypothesis testing and regression."
       },
       {
         "courseId": "d8",
         "moduleId": "ML",
-        "score": 0.3055368279804482,
+        "score": 0.30553682338689103,
         "evidence": "Random variables, discrete and continuous probability distributions and conditional probability.  No statistical estimation or hypothesis testing is taught.",
         "requirementEvidence": "Supervised learning for classification and regression; model selection, cross-validation and evaluation of generalization."
       },
       {
         "courseId": "d8",
         "moduleId": "MATH",
-        "score": 0.24097817325854276,
+        "score": 0.24097818356935988,
         "evidence": "Random variables, discrete and continuous probability distributions and conditional probability.  No statistical estimation or hypothesis testing is taught.",
         "requirementEvidence": "Linear algebra with vector spaces, matrices, linear equations, eigenvalues, eigenvectors and matrix factorizations."
       }

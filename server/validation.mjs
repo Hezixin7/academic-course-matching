@@ -38,7 +38,7 @@ export function validateRequest(input) {
     input.modules.length < 1 ||
     input.modules.length > 8
   )
-    throw new AppError("INVALID_INPUT", "每次仅接受 1–8 个候选模块。");
+    throw new AppError("INVALID_INPUT", "每次仅接受 1–3 个候选模块。");
   const modules = input.modules.map(record);
   if (new Set(modules.map((m) => m.id)).size !== modules.length)
     throw new AppError("INVALID_INPUT", "候选模块编号不能重复。");

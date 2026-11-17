@@ -182,6 +182,7 @@ export function joinCourses(transcript, descriptions) {
     };
   });
 }
+// Rule-based Semantic Expansion（基于规则的语义扩展）
 export const glossary = [
   [
     /线性代数|lineare algebra/gi,
@@ -242,9 +243,11 @@ export function semanticText(text) {
   return text + "\n" + extra;
 }
 export function chunks(text) {
+  // 根据标点符号分句子
   const sentences = text.match(/[^。！？.!?\n]+[。！？.!?]?/g) || [text];
   const out = [];
   let current = "";
+  // 每个 Chunk 分别生成 Embedding
   for (const sentence of sentences) {
     if ((current + sentence).length > 650 && current) {
       out.push(current.trim());
@@ -258,6 +261,7 @@ export function chunks(text) {
     } else current += " " + sentence;
   }
   if (current.trim()) out.push(current.trim());
+  // 只保存前8个chunk, 有隐患
   return out.slice(0, 8);
 }
 export function cosine(a, b) {
@@ -271,12 +275,14 @@ export function cosine(a, b) {
   }
   return aa && bb ? dot / Math.sqrt(aa * bb) : 0;
 }
+// 同一课程描述的多个 Chunk 向量	一个课程描述向量
 function mean(vectors) {
   const a = new Array(vectors[0].length).fill(0);
   for (const v of vectors)
     for (let i = 0; i < a.length; i++) a[i] += v[i] / vectors.length;
   return a;
 }
+//
 export async function matchCourses(
   courses,
   modules,
@@ -303,11 +309,13 @@ export async function matchCourses(
     if (!courses[i].description) continue;
     const ranked = modules
       .map((m, j) => {
+        // 计算课程与目标模块的相似度
         const ri = ranges[i],
           rj = ranges[courses.length + j];
         let best = { score: -1, course: "", requirement: "" };
         for (let a = 0; a < ri.count; a++)
           for (let b = 0; b < rj.count; b++) {
+            // Chunk-to-Chunk Similarity
             const score = cosine(vectors[ri.start + a], vectors[rj.start + b]);
             if (score > best.score)
               best = { score, course: ri.parts[a], requirement: rj.parts[b] };
@@ -315,6 +323,7 @@ export async function matchCourses(
         return {
           courseId: courses[i].id,
           moduleId: m.id,
+          // Document-to-Document Similarity
           score: Math.max(0, cosine(means[i], means[courses.length + j])),
           evidence: best.course,
           requirementEvidence: best.requirement,
@@ -323,60 +332,131 @@ export async function matchCourses(
         };
       })
       .sort((a, b) => b.score - a.score);
-    candidates.push(...ranked.slice(0, 3));
+    candidates.push(...ranked.slice(0, 3)); // Top-K(3)
   }
   return { edges, candidates };
 }
+
 export function calculate(courses, modules, edges, factor = 1.5) {
-  if (!Number.isFinite(factor) || factor <= 0 || factor > 10)
+  // 1. 验证学分换算系数
+  if (!Number.isFinite(factor) || factor <= 0 || factor > 10) {
     throw new Error("换算系数必须大于 0 且不超过 10。");
+  }
+  // 2. 初始化每门课程的学分统计
   const totals = new Map(courses.map((c) => [c.id, 0]));
+  // 3. 初始化每个目标模块的学分统计
   const modTotals = new Map(
-    modules.map((m) => [m.id, { allocated: 0, confirmed: 0 }]),
+    modules.map((m) => [
+      m.id,
+      { allocated: 0, confirmed: 0 },
+    ]),
   );
+  // 记录每门课程已分配非零 ECTS 的次数
+  const assignedCounts = new Map(
+    courses.map((c) => [c.id, 0]),
+  );
+  // 防止同一课程和模块出现重复匹配
   const pairs = new Set();
+  // 4. 遍历所有匹配关系
   for (const edge of edges) {
-    if (!totals.has(edge.courseId) || !modTotals.has(edge.moduleId))
+    // 检查课程和模块是否存在
+    if (!totals.has(edge.courseId) || !modTotals.has(edge.moduleId)) {
       throw new Error("匹配引用了不存在的课程或模块。");
+    }
+    // 检查重复匹配关系
     const pair = edge.courseId + "\0" + edge.moduleId;
-    if (pairs.has(pair))
+    if (pairs.has(pair)) {
       throw new Error("同一课程到同一模块只能保留一条匹配。");
+    }
     pairs.add(pair);
+    // 检查 ECTS 是否合法
     if (
       !Number.isFinite(edge.ects) ||
       edge.ects < 0 ||
       Math.abs(edge.ects - round(edge.ects)) > 0.000001
-    )
-      throw new Error("分配学分必须为非负数，最多两位小数。");
-    totals.set(edge.courseId, round(totals.get(edge.courseId) + edge.ects));
+    ) {
+      throw new Error(
+        "分配学分必须为非负数，最多两位小数。",
+      );
+    }
+    // 新规则：统计每门课程的非零分配数量
+    if (edge.ects > 0) {
+      const count = assignedCounts.get(edge.courseId) + 1;
+      assignedCounts.set(edge.courseId, count);
+      if (count > 1) {
+        throw new Error(
+          "同一门课程不能将学分分配给多个目标模块。",
+        );
+      }
+    }
+    // 累计每门课程已分配的 ECTS
+    totals.set(
+      edge.courseId,
+      round(totals.get(edge.courseId) + edge.ects),
+    );
+    // 累计目标模块的 ECTS
     const m = modTotals.get(edge.moduleId);
     m.allocated = round(m.allocated + edge.ects);
-    if (edge.status === "confirmed")
+    // 只有 confirmed 状态才计入已确认学分
+    if (edge.status === "confirmed") {
       m.confirmed = round(m.confirmed + edge.ects);
+    }
   }
+  //  检查每门课程的整门分配规则
   for (const c of courses) {
     const budget = round(c.credits * factor);
-    if (totals.get(c.id) > budget + 0.00001)
+    const assigned = totals.get(c.id);
+    // 保留原来的预算上限检查
+    if (assigned > budget + 0.00001) {
       throw new Error(
-        `${c.name} 已分配 ${fmt(totals.get(c.id))} ECTS，超过可用 ${fmt(budget)} ECTS。请先减少其他分配。`,
+        `${c.name} 已分配 ${fmt(assigned)} ECTS，` +
+        `超过可用 ${fmt(budget)} ECTS。` +
+        "请先减少其他分配。",
       );
+    }
+    // 新规则：只允许 0 或完整课程 ECTS
+    if (
+      assigned > 0 &&
+      Math.abs(assigned - budget) > 0.00001
+    ) {
+      throw new Error(
+        `${c.name} 采用整门课程分配规则，` +
+        `只能分配 0 或 ${fmt(budget)} ECTS，` +
+        `当前分配为 ${fmt(assigned)} ECTS。`,
+      );
+    }
   }
+  // 计算所有课程的可用 ECTS
   const available = round(
-    courses.reduce((s, c) => s + round(c.credits * factor), 0),
+    courses.reduce(
+      (sum, c) => sum + round(c.credits * factor),
+      0,
+    ),
   );
-  const allocated = round([...totals.values()].reduce((a, b) => a + b, 0));
+  //  计算已经分配的 ECTS
+  const allocated = round(
+    [...totals.values()].reduce((a, b) => a + b, 0),
+  );
+  //  返回汇总结果
   return {
     available,
     allocated,
     unallocated: round(available - allocated),
     confirmed: round(
-      [...modTotals.values()].reduce((a, b) => a + b.confirmed, 0),
+      [...modTotals.values()].reduce(
+        (a, b) => a + b.confirmed,
+        0,
+      ),
     ),
+
     totals: Object.fromEntries(totals),
     modules: Object.fromEntries(modTotals),
-    pending: edges.filter((e) => e.status !== "confirmed").length,
+    pending: edges.filter(
+      (e) => e.status !== "confirmed",
+    ).length,
   };
 }
+
 export const DEMO = {
   transcript: [
     { id: "CS101", name: "程序设计基础", credits: 4 },

@@ -1,0 +1,1227 @@
+{
+  "generatedAt": "2026-11-17T13:40:15.551Z",
+  "dataset": "eval/data/benchmark-v2.json",
+  "provenance": "Synthetic benchmark authored for this project with a deterministic generator. NOT real university data and NOT independently human-validated. Labels follow the documented classification criteria; review before using them for model selection.",
+  "split": "dev",
+  "courses": 40,
+  "pairs": 800,
+  "embeddingModel": "Xenova/all-MiniLM-L6-v2 q8",
+  "datasetStats": {
+    "version": 2,
+    "benchmark": "Benchmark V2",
+    "split": "dev",
+    "courses": 40,
+    "modules": 20,
+    "labels": 800,
+    "exhaustivePairs": 800,
+    "scenarioDistribution": {
+      "straightforward": 10,
+      "paraphrase": 10,
+      "partial": 8,
+      "hard_negative": 8,
+      "no_valid_match": 4
+    },
+    "labelDistribution": {
+      "match": 28,
+      "partial": 8,
+      "no_match": 764,
+      "other": 0
+    },
+    "positiveLabels": 36,
+    "negativeLabels": 764,
+    "eligibleCourses": 36,
+    "synthetic": true,
+    "humanValidated": false,
+    "provenance": "Synthetic benchmark authored for this project with a deterministic generator. NOT real university data and NOT independently human-validated. Labels follow the documented classification criteria; review before using them for model selection."
+  },
+  "metricDefinitions": {
+    "relevance": "A module is relevant to a course when its ground-truth decision is match or partial. Courses with no match/partial label are excluded from Recall@K, HitRate@K and MRR denominators, matching the existing retrievalMetrics implementation.",
+    "recallAtK": "Per-course recall over positive labels, macro-averaged across eligible courses.",
+    "hitRateAtK": "Fraction of eligible courses with at least one relevant module in the top K.",
+    "mrr": "MRR@K: reciprocal rank of the first relevant module within the top K; 0 when no relevant module is retrieved in the top K.",
+    "eligibleCourses": "Courses with at least one match/partial label. Courses without a valid match contribute no Recall/HitRate/MRR denominator.",
+    "candidateReduction": "Exhaustive matching compares every course with every module; retrieval returns the top K modules per course. Reduction is a candidate-count ratio, not a measured API-cost saving.",
+    "latency": "Cold total = model load + first description run. Warm values are repeated steady-state runs in the same process. No GPU is used."
+  },
+  "retrieval": {
+    "nameEmbedding": {
+      "k": 3,
+      "eligibleCourses": 36,
+      "macroRecallAtK": 0.8888888888888888,
+      "hitRateAtK": 0.8888888888888888,
+      "mrr": 0.8611111111111112
+    },
+    "descriptionEmbedding": {
+      "k": 3,
+      "eligibleCourses": 36,
+      "macroRecallAtK": 1,
+      "hitRateAtK": 1,
+      "mrr": 0.9583333333333334
+    },
+    "keywordJaccard": {
+      "k": 3,
+      "eligibleCourses": 36,
+      "macroRecallAtK": 1,
+      "hitRateAtK": 1,
+      "mrr": 0.9305555555555556
+    }
+  },
+  "retrievalAtK": {
+    "1": {
+      "nameEmbedding": {
+        "k": 1,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 0.8333333333333334,
+        "hitRateAtK": 0.8333333333333334,
+        "mrr": 0.8333333333333334
+      },
+      "descriptionEmbedding": {
+        "k": 1,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 0.9166666666666666,
+        "hitRateAtK": 0.9166666666666666,
+        "mrr": 0.9166666666666666
+      },
+      "keywordJaccard": {
+        "k": 1,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 0.8611111111111112,
+        "hitRateAtK": 0.8611111111111112,
+        "mrr": 0.8611111111111112
+      }
+    },
+    "3": {
+      "nameEmbedding": {
+        "k": 3,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 0.8888888888888888,
+        "hitRateAtK": 0.8888888888888888,
+        "mrr": 0.8611111111111112
+      },
+      "descriptionEmbedding": {
+        "k": 3,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 1,
+        "hitRateAtK": 1,
+        "mrr": 0.9583333333333334
+      },
+      "keywordJaccard": {
+        "k": 3,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 1,
+        "hitRateAtK": 1,
+        "mrr": 0.9305555555555556
+      }
+    },
+    "5": {
+      "nameEmbedding": {
+        "k": 5,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 0.9444444444444444,
+        "hitRateAtK": 0.9444444444444444,
+        "mrr": 0.8736111111111111
+      },
+      "descriptionEmbedding": {
+        "k": 5,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 1,
+        "hitRateAtK": 1,
+        "mrr": 0.9583333333333334
+      },
+      "keywordJaccard": {
+        "k": 5,
+        "eligibleCourses": 36,
+        "macroRecallAtK": 1,
+        "hitRateAtK": 1,
+        "mrr": 0.9305555555555556
+      }
+    }
+  },
+  "candidateReduction": {
+    "allCourses": {
+      "1": {
+        "exhaustivePairs": 800,
+        "retrievedPairs": 40,
+        "reduction": 0.95,
+        "reductionPercent": 95
+      },
+      "3": {
+        "exhaustivePairs": 800,
+        "retrievedPairs": 120,
+        "reduction": 0.85,
+        "reductionPercent": 85
+      },
+      "5": {
+        "exhaustivePairs": 800,
+        "retrievedPairs": 200,
+        "reduction": 0.75,
+        "reductionPercent": 75
+      }
+    },
+    "eligibleCoursesOnly": {
+      "1": {
+        "exhaustivePairs": 720,
+        "retrievedPairs": 36,
+        "reduction": 0.95,
+        "reductionPercent": 95
+      },
+      "3": {
+        "exhaustivePairs": 720,
+        "retrievedPairs": 108,
+        "reduction": 0.85,
+        "reductionPercent": 85
+      },
+      "5": {
+        "exhaustivePairs": 720,
+        "retrievedPairs": 180,
+        "reduction": 0.75,
+        "reductionPercent": 75
+      }
+    }
+  },
+  "timing": {
+    "hardware": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "release": "24.6.0",
+      "cpu": "Apple M1 Pro",
+      "logicalCores": 8,
+      "totalMemoryGB": 16,
+      "node": "v24.15.0",
+      "embeddingModel": "Xenova/all-MiniLM-L6-v2",
+      "dtype": "q8",
+      "device": "cpu"
+    },
+    "protocol": "Single process; model loaded once. The first description run starts immediately after load and is reported as cold. Remaining runs are warm steady-state measurements in the same process. Name and keyword runs follow the description runs, so their first run is already model-warm. Every strategy is repeated 5 times.",
+    "repeats": 5,
+    "modelLoadMs": 169.11,
+    "coldStartTotalMs": 336.243,
+    "descriptionEmbedding": {
+      "cold": {
+        "runMs": 167.133,
+        "embeddingMs": 165.557
+      },
+      "warm": {
+        "runMs": {
+          "runsMs": [
+            147.039,
+            147.701,
+            145.738,
+            148.373
+          ],
+          "minMs": 145.738,
+          "medianMs": 147.37,
+          "meanMs": 147.213,
+          "maxMs": 148.373
+        },
+        "embeddingMs": {
+          "runsMs": [
+            146.551,
+            147.227,
+            145.23,
+            147.836
+          ],
+          "minMs": 145.23,
+          "medianMs": 146.889,
+          "meanMs": 146.711,
+          "maxMs": 147.836
+        }
+      }
+    },
+    "nameEmbedding": {
+      "firstRun": {
+        "runMs": 29.28,
+        "embeddingMs": 26.705
+      },
+      "warm": {
+        "runMs": {
+          "runsMs": [
+            28.489,
+            25.081,
+            25.071,
+            25.071
+          ],
+          "minMs": 25.071,
+          "medianMs": 25.076,
+          "meanMs": 25.928,
+          "maxMs": 28.489
+        },
+        "embeddingMs": {
+          "runsMs": [
+            27.906,
+            24.47,
+            24.466,
+            24.444
+          ],
+          "minMs": 24.444,
+          "medianMs": 24.468,
+          "meanMs": 25.321,
+          "maxMs": 27.906
+        }
+      }
+    },
+    "keywordJaccard": {
+      "firstRunMs": 3.541,
+      "warm": {
+        "runMs": {
+          "runsMs": [
+            2.159,
+            2.271,
+            2.774,
+            2.33
+          ],
+          "minMs": 2.159,
+          "medianMs": 2.301,
+          "meanMs": 2.383,
+          "maxMs": 2.774
+        }
+      }
+    },
+    "retrievalLatencyMs": {
+      "descriptionEmbedding": {
+        "coldStartTotalMs": 336.243,
+        "warmMedianMs": 147.37
+      },
+      "nameEmbedding": {
+        "firstRunMs": 29.28,
+        "warmMedianMs": 25.076
+      },
+      "keywordJaccard": {
+        "firstRunMs": 3.541,
+        "warmMedianMs": 2.301
+      }
+    }
+  },
+  "parity": {
+    "productionRanker": "matchCourses() top-3",
+    "evaluationRanker": "evaluation description ranker top-3",
+    "checkedCourses": 40,
+    "failures": 0
+  },
+  "llm": {
+    "status": "not_run",
+    "metrics": null
+  },
+  "rankings": {
+    "D001": [
+      {
+        "courseId": "D001",
+        "moduleId": "MATH",
+        "score": 0.7011721240992982,
+        "evidence": "Vector spaces and linear maps.  Matrix operations, systems of linear equations, determinants, eigenvalues and eigenvectors.  Students compute matrix factorizations and apply orthogonality in geometric problems.",
+        "requirementEvidence": "Vector spaces, matrices, systems of linear equations, determinants, eigenvalues, eigenvectors, orthogonality and matrix decompositions."
+      },
+      {
+        "courseId": "D001",
+        "moduleId": "NUM",
+        "score": 0.5215396941952034,
+        "evidence": "Vector spaces and linear maps.  Matrix operations, systems of linear equations, determinants, eigenvalues and eigenvectors.  Students compute matrix factorizations and apply orthogonality in geometric problems.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D001",
+        "moduleId": "GRAPH",
+        "score": 0.3536477122269761,
+        "evidence": "Vector spaces and linear maps.  Matrix operations, systems of linear equations, determinants, eigenvalues and eigenvectors.  Students compute matrix factorizations and apply orthogonality in geometric problems.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      }
+    ],
+    "D002": [
+      {
+        "courseId": "D002",
+        "moduleId": "STAT",
+        "score": 0.5955376278365209,
+        "evidence": "Random variables, discrete and continuous probability distributions, conditional probability, expectation and variance.  Students derive sampling distributions and apply the law of large numbers.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D002",
+        "moduleId": "NUM",
+        "score": 0.2660005060489268,
+        "evidence": "Random variables, discrete and continuous probability distributions, conditional probability, expectation and variance.  Students derive sampling distributions and apply the law of large numbers.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D002",
+        "moduleId": "MATH",
+        "score": 0.2656988165317609,
+        "evidence": "Random variables, discrete and continuous probability distributions, conditional probability, expectation and variance.  Students derive sampling distributions and apply the law of large numbers.",
+        "requirementEvidence": "Vector spaces, matrices, systems of linear equations, determinants, eigenvalues, eigenvectors, orthogonality and matrix decompositions."
+      }
+    ],
+    "D003": [
+      {
+        "courseId": "D003",
+        "moduleId": "CS",
+        "score": 0.9803118784686881,
+        "evidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables.  Sorting, searching, graph traversal, dynamic programming and asymptotic time and space complexity.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      },
+      {
+        "courseId": "D003",
+        "moduleId": "THEO",
+        "score": 0.43616669121744905,
+        "evidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables.  Sorting, searching, graph traversal, dynamic programming and asymptotic time and space complexity.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      },
+      {
+        "courseId": "D003",
+        "moduleId": "OS",
+        "score": 0.41184608637565784,
+        "evidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables.  Sorting, searching, graph traversal, dynamic programming and asymptotic time and space complexity.",
+        "requirementEvidence": "Processes and threads, CPU scheduling, synchronization, deadlock, virtual memory, file systems, concurrency and system calls."
+      }
+    ],
+    "D004": [
+      {
+        "courseId": "D004",
+        "moduleId": "DATA",
+        "score": 0.895231420028406,
+        "evidence": "Relational data modeling and entity-relationship design.  SQL queries, joins, normalization, transactions, indexing and query optimization in a practical database project.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      },
+      {
+        "courseId": "D004",
+        "moduleId": "DIST",
+        "score": 0.30657107498590996,
+        "evidence": "Relational data modeling and entity-relationship design.  SQL queries, joins, normalization, transactions, indexing and query optimization in a practical database project.",
+        "requirementEvidence": "Replication, consistency models, consensus, fault tolerance, distributed transactions, message passing and scalable system design."
+      },
+      {
+        "courseId": "D004",
+        "moduleId": "CS",
+        "score": 0.29446228537449803,
+        "evidence": "Relational data modeling and entity-relationship design.  SQL queries, joins, normalization, transactions, indexing and query optimization in a practical database project.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      }
+    ],
+    "D005": [
+      {
+        "courseId": "D005",
+        "moduleId": "ML",
+        "score": 0.8435014112894952,
+        "evidence": "Supervised classification and regression with linear models, decision trees and ensembles.  Feature engineering, model selection, cross-validation, regularization and generalization evaluation.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D005",
+        "moduleId": "STAT",
+        "score": 0.3925626412469652,
+        "evidence": "Supervised classification and regression with linear models, decision trees and ensembles.  Feature engineering, model selection, cross-validation, regularization and generalization evaluation.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D005",
+        "moduleId": "MATH",
+        "score": 0.3139717552449906,
+        "evidence": "Supervised classification and regression with linear models, decision trees and ensembles.  Feature engineering, model selection, cross-validation, regularization and generalization evaluation.",
+        "requirementEvidence": "Vector spaces, matrices, systems of linear equations, determinants, eigenvalues, eigenvectors, orthogonality and matrix decompositions."
+      }
+    ],
+    "D006": [
+      {
+        "courseId": "D006",
+        "moduleId": "SE",
+        "score": 0.9200492950059065,
+        "evidence": "Requirements analysis and object-oriented modular design.  Version control, unit and integration testing, agile team development and software maintenance.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D006",
+        "moduleId": "EMB",
+        "score": 0.3600250001003966,
+        "evidence": "Requirements analysis and object-oriented modular design.  Version control, unit and integration testing, agile team development and software maintenance.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      },
+      {
+        "courseId": "D006",
+        "moduleId": "HCI",
+        "score": 0.35718659459613683,
+        "evidence": "Requirements analysis and object-oriented modular design.  Version control, unit and integration testing, agile team development and software maintenance.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      }
+    ],
+    "D007": [
+      {
+        "courseId": "D007",
+        "moduleId": "NET",
+        "score": 0.9313186374334224,
+        "evidence": "Layered network architectures and packet switching.  Routing algorithms, TCP/IP, congestion control, wireless networks and hands-on network measurement.",
+        "requirementEvidence": "Layered network architectures, packet switching, routing, TCP/IP, congestion control, wireless networks and network measurement."
+      },
+      {
+        "courseId": "D007",
+        "moduleId": "EMB",
+        "score": 0.38353598964634045,
+        "evidence": "Layered network architectures and packet switching.  Routing algorithms, TCP/IP, congestion control, wireless networks and hands-on network measurement.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      },
+      {
+        "courseId": "D007",
+        "moduleId": "CS",
+        "score": 0.3325262768685095,
+        "evidence": "Layered network architectures and packet switching.  Routing algorithms, TCP/IP, congestion control, wireless networks and hands-on network measurement.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      }
+    ],
+    "D008": [
+      {
+        "courseId": "D008",
+        "moduleId": "OS",
+        "score": 0.9388498471852094,
+        "evidence": "Processes, threads and CPU scheduling.  Synchronization, deadlock, virtual memory, file systems and system calls, with concurrency programming assignments.",
+        "requirementEvidence": "Processes and threads, CPU scheduling, synchronization, deadlock, virtual memory, file systems, concurrency and system calls."
+      },
+      {
+        "courseId": "D008",
+        "moduleId": "EMB",
+        "score": 0.5262481422818392,
+        "evidence": "Processes, threads and CPU scheduling.  Synchronization, deadlock, virtual memory, file systems and system calls, with concurrency programming assignments.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      },
+      {
+        "courseId": "D008",
+        "moduleId": "DIST",
+        "score": 0.450203738870865,
+        "evidence": "Processes, threads and CPU scheduling.  Synchronization, deadlock, virtual memory, file systems and system calls, with concurrency programming assignments.",
+        "requirementEvidence": "Replication, consistency models, consensus, fault tolerance, distributed transactions, message passing and scalable system design."
+      }
+    ],
+    "D009": [
+      {
+        "courseId": "D009",
+        "moduleId": "CV",
+        "score": 0.9592934124550123,
+        "evidence": "Image formation, filtering and feature detection.  Camera geometry, stereo vision, object recognition and convolutional neural networks for visual scene understanding.",
+        "requirementEvidence": "Image formation and filtering, feature detection, camera geometry, stereo vision, object recognition, convolutional neural networks and visual scene understanding."
+      },
+      {
+        "courseId": "D009",
+        "moduleId": "ROB",
+        "score": 0.42729308346485156,
+        "evidence": "Image formation, filtering and feature detection.  Camera geometry, stereo vision, object recognition and convolutional neural networks for visual scene understanding.",
+        "requirementEvidence": "Robot kinematics, dynamics, motion planning, control, sensor fusion, localization and perception for autonomous systems."
+      },
+      {
+        "courseId": "D009",
+        "moduleId": "GRAPH",
+        "score": 0.4009798853003879,
+        "evidence": "Image formation, filtering and feature detection.  Camera geometry, stereo vision, object recognition and convolutional neural networks for visual scene understanding.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      }
+    ],
+    "D010": [
+      {
+        "courseId": "D010",
+        "moduleId": "NLP",
+        "score": 0.9780011066514203,
+        "evidence": "Text normalization, tokenization and language models.  Word and sentence embeddings, syntactic parsing, machine translation and transformer architectures.",
+        "requirementEvidence": "Text normalization, tokenization, language models, word and sentence embeddings, syntactic parsing, machine translation and transformer architectures."
+      },
+      {
+        "courseId": "D010",
+        "moduleId": "ML",
+        "score": 0.30690685508196813,
+        "evidence": "Text normalization, tokenization and language models.  Word and sentence embeddings, syntactic parsing, machine translation and transformer architectures.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D010",
+        "moduleId": "DATA",
+        "score": 0.2531618306928954,
+        "evidence": "Text normalization, tokenization and language models.  Word and sentence embeddings, syntactic parsing, machine translation and transformer architectures.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      }
+    ],
+    "D011": [
+      {
+        "courseId": "D011",
+        "moduleId": "MATH",
+        "score": 0.6223130168424986,
+        "evidence": "Lineare Algebra für Ingenieure: Vektorräume, lineare Gleichungssysteme, Matrizen und Determinanten.  Students analyze eigenvalues, eigenvectors and orthogonal transformations in engineering models.",
+        "requirementEvidence": "Vector spaces, matrices, systems of linear equations, determinants, eigenvalues, eigenvectors, orthogonality and matrix decompositions."
+      },
+      {
+        "courseId": "D011",
+        "moduleId": "NUM",
+        "score": 0.47431309625019563,
+        "evidence": "Lineare Algebra für Ingenieure: Vektorräume, lineare Gleichungssysteme, Matrizen und Determinanten.  Students analyze eigenvalues, eigenvectors and orthogonal transformations in engineering models.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D011",
+        "moduleId": "GRAPH",
+        "score": 0.307067921926018,
+        "evidence": "Lineare Algebra für Ingenieure: Vektorräume, lineare Gleichungssysteme, Matrizen und Determinanten.  Students analyze eigenvalues, eigenvectors and orthogonal transformations in engineering models.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      }
+    ],
+    "D012": [
+      {
+        "courseId": "D012",
+        "moduleId": "STAT",
+        "score": 0.5899307183998622,
+        "evidence": "Exploratory analysis and inferential reasoning with random variables and probability models.  Students estimate parameters, construct confidence intervals and test hypotheses using regression.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D012",
+        "moduleId": "ML",
+        "score": 0.2495329303912329,
+        "evidence": "Exploratory analysis and inferential reasoning with random variables and probability models.  Students estimate parameters, construct confidence intervals and test hypotheses using regression.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D012",
+        "moduleId": "NUM",
+        "score": 0.23065950933177407,
+        "evidence": "Exploratory analysis and inferential reasoning with random variables and probability models.  Students estimate parameters, construct confidence intervals and test hypotheses using regression.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      }
+    ],
+    "D013": [
+      {
+        "courseId": "D013",
+        "moduleId": "CS",
+        "score": 0.7524727835023292,
+        "evidence": "Algorithmic problem solving with arrays, lists, stacks, queues, trees, graphs and hash maps.  Students compare sorting and search strategies and reason about running-time growth.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      },
+      {
+        "courseId": "D013",
+        "moduleId": "NUM",
+        "score": 0.3788525867610657,
+        "evidence": "Algorithmic problem solving with arrays, lists, stacks, queues, trees, graphs and hash maps.  Students compare sorting and search strategies and reason about running-time growth.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D013",
+        "moduleId": "THEO",
+        "score": 0.3199588977004979,
+        "evidence": "Algorithmic problem solving with arrays, lists, stacks, queues, trees, graphs and hash maps.  Students compare sorting and search strategies and reason about running-time growth.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      }
+    ],
+    "D014": [
+      {
+        "courseId": "D014",
+        "moduleId": "DATA",
+        "score": 0.7266393341756391,
+        "evidence": "Designing relational schemata from entity-relationship models.  Students write SQL joins, normalize tables, manage concurrent transactions and tune indexes for query performance.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      },
+      {
+        "courseId": "D014",
+        "moduleId": "DIST",
+        "score": 0.2841467986251861,
+        "evidence": "Designing relational schemata from entity-relationship models.  Students write SQL joins, normalize tables, manage concurrent transactions and tune indexes for query performance.",
+        "requirementEvidence": "Replication, consistency models, consensus, fault tolerance, distributed transactions, message passing and scalable system design."
+      },
+      {
+        "courseId": "D014",
+        "moduleId": "CS",
+        "score": 0.26831958982526855,
+        "evidence": "Designing relational schemata from entity-relationship models.  Students write SQL joins, normalize tables, manage concurrent transactions and tune indexes for query performance.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      }
+    ],
+    "D015": [
+      {
+        "courseId": "D015",
+        "moduleId": "ML",
+        "score": 0.6748037252029542,
+        "evidence": "Statistical learning for prediction and classification.  Students train regularized models, select features, run cross-validation and evaluate generalization on held-out data.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D015",
+        "moduleId": "STAT",
+        "score": 0.423354045340304,
+        "evidence": "Statistical learning for prediction and classification.  Students train regularized models, select features, run cross-validation and evaluate generalization on held-out data.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D015",
+        "moduleId": "NLP",
+        "score": 0.22539685865839207,
+        "evidence": "Statistical learning for prediction and classification.  Students train regularized models, select features, run cross-validation and evaluate generalization on held-out data.",
+        "requirementEvidence": "Text normalization, tokenization, language models, word and sentence embeddings, syntactic parsing, machine translation and transformer architectures."
+      }
+    ],
+    "D016": [
+      {
+        "courseId": "D016",
+        "moduleId": "SE",
+        "score": 0.8288816772838664,
+        "evidence": "Requirements elicitation, modular architecture and object-oriented design.  Teams use version control, write unit and integration tests and maintain an agile software project.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D016",
+        "moduleId": "HCI",
+        "score": 0.3465121512814449,
+        "evidence": "Requirements elicitation, modular architecture and object-oriented design.  Teams use version control, write unit and integration tests and maintain an agile software project.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D016",
+        "moduleId": "DIST",
+        "score": 0.33513748401021715,
+        "evidence": "Requirements elicitation, modular architecture and object-oriented design.  Teams use version control, write unit and integration tests and maintain an agile software project.",
+        "requirementEvidence": "Replication, consistency models, consensus, fault tolerance, distributed transactions, message passing and scalable system design."
+      }
+    ],
+    "D017": [
+      {
+        "courseId": "D017",
+        "moduleId": "NET",
+        "score": 0.7094769246189631,
+        "evidence": "Packet-switched communication, layered protocols and internet routing.  Students analyze TCP/IP behavior, congestion control and wireless network performance.",
+        "requirementEvidence": "Layered network architectures, packet switching, routing, TCP/IP, congestion control, wireless networks and network measurement."
+      },
+      {
+        "courseId": "D017",
+        "moduleId": "CS",
+        "score": 0.302008596438565,
+        "evidence": "Packet-switched communication, layered protocols and internet routing.  Students analyze TCP/IP behavior, congestion control and wireless network performance.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      },
+      {
+        "courseId": "D017",
+        "moduleId": "HCI",
+        "score": 0.28685651367769777,
+        "evidence": "Packet-switched communication, layered protocols and internet routing.  Students analyze TCP/IP behavior, congestion control and wireless network performance.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      }
+    ],
+    "D018": [
+      {
+        "courseId": "D018",
+        "moduleId": "OS",
+        "score": 0.7060282708686967,
+        "evidence": "Betriebssysteme: Prozesse, Threads und Scheduling; Synchronisation, Verklemmung und virtueller Speicher.  Students implement system calls, file-system operations and concurrent programs.",
+        "requirementEvidence": "Processes and threads, CPU scheduling, synchronization, deadlock, virtual memory, file systems, concurrency and system calls."
+      },
+      {
+        "courseId": "D018",
+        "moduleId": "DIST",
+        "score": 0.41287168747383146,
+        "evidence": "Betriebssysteme: Prozesse, Threads und Scheduling; Synchronisation, Verklemmung und virtueller Speicher.  Students implement system calls, file-system operations and concurrent programs.",
+        "requirementEvidence": "Replication, consistency models, consensus, fault tolerance, distributed transactions, message passing and scalable system design."
+      },
+      {
+        "courseId": "D018",
+        "moduleId": "EMB",
+        "score": 0.39146656624407805,
+        "evidence": "Betriebssysteme: Prozesse, Threads und Scheduling; Synchronisation, Verklemmung und virtueller Speicher.  Students implement system calls, file-system operations and concurrent programs.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      }
+    ],
+    "D019": [
+      {
+        "courseId": "D019",
+        "moduleId": "CV",
+        "score": 0.735019041426321,
+        "evidence": "Pixels, filters and feature descriptors for visual recognition.  Students study camera projection, stereo matching, object detection and convolutional networks for scene interpretation.",
+        "requirementEvidence": "Image formation and filtering, feature detection, camera geometry, stereo vision, object recognition, convolutional neural networks and visual scene understanding."
+      },
+      {
+        "courseId": "D019",
+        "moduleId": "GRAPH",
+        "score": 0.35994334187820115,
+        "evidence": "Pixels, filters and feature descriptors for visual recognition.  Students study camera projection, stereo matching, object detection and convolutional networks for scene interpretation.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      },
+      {
+        "courseId": "D019",
+        "moduleId": "ROB",
+        "score": 0.32750203584726734,
+        "evidence": "Pixels, filters and feature descriptors for visual recognition.  Students study camera projection, stereo matching, object detection and convolutional networks for scene interpretation.",
+        "requirementEvidence": "Robot kinematics, dynamics, motion planning, control, sensor fusion, localization and perception for autonomous systems."
+      }
+    ],
+    "D020": [
+      {
+        "courseId": "D020",
+        "moduleId": "NLP",
+        "score": 0.7143687127294734,
+        "evidence": "Computational processing of natural language: tokenization, language modeling, embeddings and parsing.  Students build translation and transformer-based text analysis pipelines.",
+        "requirementEvidence": "Text normalization, tokenization, language models, word and sentence embeddings, syntactic parsing, machine translation and transformer architectures."
+      },
+      {
+        "courseId": "D020",
+        "moduleId": "NUM",
+        "score": 0.25751880087316226,
+        "evidence": "Computational processing of natural language: tokenization, language modeling, embeddings and parsing.  Students build translation and transformer-based text analysis pipelines.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D020",
+        "moduleId": "ML",
+        "score": 0.2235507619788638,
+        "evidence": "Computational processing of natural language: tokenization, language modeling, embeddings and parsing.  Students build translation and transformer-based text analysis pipelines.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      }
+    ],
+    "D021": [
+      {
+        "courseId": "D021",
+        "moduleId": "STAT",
+        "score": 0.7352526443736602,
+        "evidence": "Random variables, discrete and continuous distributions and conditional probability.  The course does not cover statistical estimation, confidence intervals or hypothesis testing.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D021",
+        "moduleId": "ML",
+        "score": 0.3150883283168256,
+        "evidence": "Random variables, discrete and continuous distributions and conditional probability.  The course does not cover statistical estimation, confidence intervals or hypothesis testing.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D021",
+        "moduleId": "THEO",
+        "score": 0.2632308556966521,
+        "evidence": "Random variables, discrete and continuous distributions and conditional probability.  The course does not cover statistical estimation, confidence intervals or hypothesis testing.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      }
+    ],
+    "D022": [
+      {
+        "courseId": "D022",
+        "moduleId": "CS",
+        "score": 0.9172965062828706,
+        "evidence": "Arrays, linked lists, stacks, queues and binary search trees, with basic sorting.  Graph algorithms, dynamic programming and asymptotic complexity analysis are not covered.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      },
+      {
+        "courseId": "D022",
+        "moduleId": "OS",
+        "score": 0.3690448870062559,
+        "evidence": "Arrays, linked lists, stacks, queues and binary search trees, with basic sorting.  Graph algorithms, dynamic programming and asymptotic complexity analysis are not covered.",
+        "requirementEvidence": "Processes and threads, CPU scheduling, synchronization, deadlock, virtual memory, file systems, concurrency and system calls."
+      },
+      {
+        "courseId": "D022",
+        "moduleId": "THEO",
+        "score": 0.3634803226817488,
+        "evidence": "Arrays, linked lists, stacks, queues and binary search trees, with basic sorting.  Graph algorithms, dynamic programming and asymptotic complexity analysis are not covered.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      }
+    ],
+    "D023": [
+      {
+        "courseId": "D023",
+        "moduleId": "DATA",
+        "score": 0.8276975829308311,
+        "evidence": "Entity-relationship modeling, SQL queries, joins and normalization.  Transactions, indexing and query optimization are outside the course scope.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      },
+      {
+        "courseId": "D023",
+        "moduleId": "SE",
+        "score": 0.3378445093117274,
+        "evidence": "Entity-relationship modeling, SQL queries, joins and normalization.  Transactions, indexing and query optimization are outside the course scope.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D023",
+        "moduleId": "CS",
+        "score": 0.297773302002347,
+        "evidence": "Entity-relationship modeling, SQL queries, joins and normalization.  Transactions, indexing and query optimization are outside the course scope.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      }
+    ],
+    "D024": [
+      {
+        "courseId": "D024",
+        "moduleId": "ML",
+        "score": 0.818984626064179,
+        "evidence": "Linear and logistic regression, decision trees and basic feature engineering.  Model selection, cross-validation, regularization and generalization analysis are not covered.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D024",
+        "moduleId": "STAT",
+        "score": 0.4189532922247206,
+        "evidence": "Linear and logistic regression, decision trees and basic feature engineering.  Model selection, cross-validation, regularization and generalization analysis are not covered.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D024",
+        "moduleId": "NUM",
+        "score": 0.36958069414143885,
+        "evidence": "Linear and logistic regression, decision trees and basic feature engineering.  Model selection, cross-validation, regularization and generalization analysis are not covered.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      }
+    ],
+    "D025": [
+      {
+        "courseId": "D025",
+        "moduleId": "SE",
+        "score": 0.6964951286774332,
+        "evidence": "Unit testing, integration testing, test-case design and automated test execution.  Requirements analysis, architecture and team project management are outside the scope.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D025",
+        "moduleId": "HCI",
+        "score": 0.31267494334801044,
+        "evidence": "Unit testing, integration testing, test-case design and automated test execution.  Requirements analysis, architecture and team project management are outside the scope.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D025",
+        "moduleId": "CLOUD",
+        "score": 0.3021420360950844,
+        "evidence": "Unit testing, integration testing, test-case design and automated test execution.  Requirements analysis, architecture and team project management are outside the scope.",
+        "requirementEvidence": "Virtualization, containers, orchestration, elastic resource management, cloud storage, serverless computing and deployment automation."
+      }
+    ],
+    "D026": [
+      {
+        "courseId": "D026",
+        "moduleId": "SEC",
+        "score": 0.5785139134470849,
+        "evidence": "Web vulnerabilities such as injection, cross-site scripting and broken authentication, with secure coding exercises.  Cryptography, access-control theory and threat modeling are not covered.",
+        "requirementEvidence": "Cryptographic primitives, authentication and access control, threat modeling, software vulnerabilities, secure protocols and incident response."
+      },
+      {
+        "courseId": "D026",
+        "moduleId": "ETH",
+        "score": 0.288548652807113,
+        "evidence": "Web vulnerabilities such as injection, cross-site scripting and broken authentication, with secure coding exercises.  Cryptography, access-control theory and threat modeling are not covered.",
+        "requirementEvidence": "Professional responsibility, privacy, algorithmic bias, intellectual property, data protection regulation and social impacts of computing."
+      },
+      {
+        "courseId": "D026",
+        "moduleId": "NUM",
+        "score": 0.27736385236622935,
+        "evidence": "Web vulnerabilities such as injection, cross-site scripting and broken authentication, with secure coding exercises.  Cryptography, access-control theory and threat modeling are not covered.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      }
+    ],
+    "D027": [
+      {
+        "courseId": "D027",
+        "moduleId": "HCI",
+        "score": 0.7825223829284336,
+        "evidence": "User studies, interviews, questionnaires and usability testing with basic statistical summaries.  Interaction design, prototyping and accessibility standards are not covered.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D027",
+        "moduleId": "SE",
+        "score": 0.3654089315948373,
+        "evidence": "User studies, interviews, questionnaires and usability testing with basic statistical summaries.  Interaction design, prototyping and accessibility standards are not covered.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D027",
+        "moduleId": "STAT",
+        "score": 0.28709729930856703,
+        "evidence": "User studies, interviews, questionnaires and usability testing with basic statistical summaries.  Interaction design, prototyping and accessibility standards are not covered.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      }
+    ],
+    "D028": [
+      {
+        "courseId": "D028",
+        "moduleId": "GRAPH",
+        "score": 0.8618841002519545,
+        "evidence": "Rasterization, geometric transformations and basic shading in a real-time pipeline.  Texture mapping, ray tracing, animation and advanced rendering are not covered.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      },
+      {
+        "courseId": "D028",
+        "moduleId": "CV",
+        "score": 0.3557025683594659,
+        "evidence": "Rasterization, geometric transformations and basic shading in a real-time pipeline.  Texture mapping, ray tracing, animation and advanced rendering are not covered.",
+        "requirementEvidence": "Image formation and filtering, feature detection, camera geometry, stereo vision, object recognition, convolutional neural networks and visual scene understanding."
+      },
+      {
+        "courseId": "D028",
+        "moduleId": "EMB",
+        "score": 0.34130351219412247,
+        "evidence": "Rasterization, geometric transformations and basic shading in a real-time pipeline.  Texture mapping, ray tracing, animation and advanced rendering are not covered.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      }
+    ],
+    "D029": [
+      {
+        "courseId": "D029",
+        "moduleId": "MATH",
+        "score": 0.46910645201321205,
+        "evidence": "Statistical analysis of financial returns: probability distributions, volatility estimation, regression and hypothesis tests for portfolio risk.  Matrix notation is used for covariance tables, but vector spaces, determinants, eigenvalues, eigenvectors and matrix decompositions are not taught.",
+        "requirementEvidence": "Vector spaces, matrices, systems of linear equations, determinants, eigenvalues, eigenvectors, orthogonality and matrix decompositions."
+      },
+      {
+        "courseId": "D029",
+        "moduleId": "STAT",
+        "score": 0.3640004357596955,
+        "evidence": "Statistical analysis of financial returns: probability distributions, volatility estimation, regression and hypothesis tests for portfolio risk.  Matrix notation is used for covariance tables, but vector spaces, determinants, eigenvalues, eigenvectors and matrix decompositions are not taught.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D029",
+        "moduleId": "NUM",
+        "score": 0.2669313583463009,
+        "evidence": "Statistical analysis of financial returns: probability distributions, volatility estimation, regression and hypothesis tests for portfolio risk.  Matrix notation is used for covariance tables, but vector spaces, determinants, eigenvalues, eigenvectors and matrix decompositions are not taught.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      }
+    ],
+    "D030": [
+      {
+        "courseId": "D030",
+        "moduleId": "HCI",
+        "score": 0.5370086767843043,
+        "evidence": "Designing charts, dashboards and visual encodings for end users.  Students run usability tests, accessibility reviews and interaction evaluations of data interfaces.  Relational database design, SQL joins, normalization, transactions and indexing are not covered.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D030",
+        "moduleId": "DATA",
+        "score": 0.46911637721077865,
+        "evidence": "Designing charts, dashboards and visual encodings for end users.  Students run usability tests, accessibility reviews and interaction evaluations of data interfaces.  Relational database design, SQL joins, normalization, transactions and indexing are not covered.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      },
+      {
+        "courseId": "D030",
+        "moduleId": "CS",
+        "score": 0.404899876566211,
+        "evidence": "Designing charts, dashboards and visual encodings for end users.  Students run usability tests, accessibility reviews and interaction evaluations of data interfaces.  Relational database design, SQL joins, normalization, transactions and indexing are not covered.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      }
+    ],
+    "D031": [
+      {
+        "courseId": "D031",
+        "moduleId": "NUM",
+        "score": 0.6115047823649199,
+        "evidence": "Python for numerical simulation: floating-point error, interpolation, numerical integration, stability and iterative linear solvers.  Scripts use lists and loops, but data structures, algorithm analysis, graph algorithms and complexity theory are not taught.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D031",
+        "moduleId": "CS",
+        "score": 0.4019468937664883,
+        "evidence": "Python for numerical simulation: floating-point error, interpolation, numerical integration, stability and iterative linear solvers.  Scripts use lists and loops, but data structures, algorithm analysis, graph algorithms and complexity theory are not taught.",
+        "requirementEvidence": "Arrays, linked lists, stacks, queues, trees, graphs and hash tables; sorting, searching, graph traversal, dynamic programming and asymptotic complexity analysis."
+      },
+      {
+        "courseId": "D031",
+        "moduleId": "THEO",
+        "score": 0.37727625943557824,
+        "evidence": "Python for numerical simulation: floating-point error, interpolation, numerical integration, stability and iterative linear solvers.  Scripts use lists and loops, but data structures, algorithm analysis, graph algorithms and complexity theory are not taught.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      }
+    ],
+    "D032": [
+      {
+        "courseId": "D032",
+        "moduleId": "ML",
+        "score": 0.45096093013065297,
+        "evidence": "Statistical analysis of marketing experiments: randomization, sampling, confidence intervals, hypothesis tests and regression for conversion rates.  Dashboard tools are used, but machine learning, feature engineering, model selection, cross-validation and regularization are not covered.",
+        "requirementEvidence": "Supervised classification and regression, feature engineering, model selection, cross-validation, regularization and evaluation of generalization."
+      },
+      {
+        "courseId": "D032",
+        "moduleId": "STAT",
+        "score": 0.432636584084752,
+        "evidence": "Statistical analysis of marketing experiments: randomization, sampling, confidence intervals, hypothesis tests and regression for conversion rates.  Dashboard tools are used, but machine learning, feature engineering, model selection, cross-validation and regularization are not covered.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D032",
+        "moduleId": "DATA",
+        "score": 0.2688854299310599,
+        "evidence": "Statistical analysis of marketing experiments: randomization, sampling, confidence intervals, hypothesis tests and regression for conversion rates.  Dashboard tools are used, but machine learning, feature engineering, model selection, cross-validation and regularization are not covered.",
+        "requirementEvidence": "Relational data modeling, entity-relationship design, SQL queries, normalization, transactions, indexing and query optimization."
+      }
+    ],
+    "D033": [
+      {
+        "courseId": "D033",
+        "moduleId": "SE",
+        "score": 0.5221970577324472,
+        "evidence": "Professional responsibility, privacy and ethical decision-making in software teams.  Students discuss case studies of failures and bias while using project schedules and agile ceremonies.  Requirements engineering, software architecture, programming, version control and testing are not covered.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      },
+      {
+        "courseId": "D033",
+        "moduleId": "ETH",
+        "score": 0.4771148729618683,
+        "evidence": "Professional responsibility, privacy and ethical decision-making in software teams.  Students discuss case studies of failures and bias while using project schedules and agile ceremonies.  Requirements engineering, software architecture, programming, version control and testing are not covered.",
+        "requirementEvidence": "Professional responsibility, privacy, algorithmic bias, intellectual property, data protection regulation and social impacts of computing."
+      },
+      {
+        "courseId": "D033",
+        "moduleId": "SEC",
+        "score": 0.280987034370427,
+        "evidence": "Professional responsibility, privacy and ethical decision-making in software teams.  Students discuss case studies of failures and bias while using project schedules and agile ceremonies.  Requirements engineering, software architecture, programming, version control and testing are not covered.",
+        "requirementEvidence": "Cryptographic primitives, authentication and access control, threat modeling, software vulnerabilities, secure protocols and incident response."
+      }
+    ],
+    "D034": [
+      {
+        "courseId": "D034",
+        "moduleId": "ETH",
+        "score": 0.7688907472177897,
+        "evidence": "Social and ethical impacts of computing: privacy, bias, professional responsibility and technology policy.  Students read historical case studies of digital systems.  Programming, algorithms, data structures and complexity analysis are not taught.",
+        "requirementEvidence": "Professional responsibility, privacy, algorithmic bias, intellectual property, data protection regulation and social impacts of computing."
+      },
+      {
+        "courseId": "D034",
+        "moduleId": "THEO",
+        "score": 0.27183895985439593,
+        "evidence": "Social and ethical impacts of computing: privacy, bias, professional responsibility and technology policy.  Students read historical case studies of digital systems.  Programming, algorithms, data structures and complexity analysis are not taught.",
+        "requirementEvidence": "Finite automata, formal languages, Turing machines, computability, decidability and computational complexity classes."
+      },
+      {
+        "courseId": "D034",
+        "moduleId": "OS",
+        "score": 0.2627032299645457,
+        "evidence": "Social and ethical impacts of computing: privacy, bias, professional responsibility and technology policy.  Students read historical case studies of digital systems.  Programming, algorithms, data structures and complexity analysis are not taught.",
+        "requirementEvidence": "Processes and threads, CPU scheduling, synchronization, deadlock, virtual memory, file systems, concurrency and system calls."
+      }
+    ],
+    "D035": [
+      {
+        "courseId": "D035",
+        "moduleId": "EMB",
+        "score": 0.5195066382751097,
+        "evidence": "Embedded control and sensor interfaces in medical imaging devices: microcontrollers, interrupts, calibration, real-time constraints and serial communication.  Students operate X-ray and ultrasound hardware.  Image processing, feature detection, camera geometry and computer vision models are not covered.",
+        "requirementEvidence": "Microcontroller architectures, C programming, interrupts, real-time scheduling, sensor interfaces, embedded communication and hardware-software co-design."
+      },
+      {
+        "courseId": "D035",
+        "moduleId": "GRAPH",
+        "score": 0.37688264858100634,
+        "evidence": "Embedded control and sensor interfaces in medical imaging devices: microcontrollers, interrupts, calibration, real-time constraints and serial communication.  Students operate X-ray and ultrasound hardware.  Image processing, feature detection, camera geometry and computer vision models are not covered.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      },
+      {
+        "courseId": "D035",
+        "moduleId": "CV",
+        "score": 0.3370355214355007,
+        "evidence": "Embedded control and sensor interfaces in medical imaging devices: microcontrollers, interrupts, calibration, real-time constraints and serial communication.  Students operate X-ray and ultrasound hardware.  Image processing, feature detection, camera geometry and computer vision models are not covered.",
+        "requirementEvidence": "Image formation and filtering, feature detection, camera geometry, stereo vision, object recognition, convolutional neural networks and visual scene understanding."
+      }
+    ],
+    "D036": [
+      {
+        "courseId": "D036",
+        "moduleId": "ETH",
+        "score": 0.4905196822974637,
+        "evidence": "Data protection regulation, privacy law, contracts and compliance audits.  Students review security policies and incident reports, but cryptography, authentication, access control, threat modeling and secure coding are not covered.",
+        "requirementEvidence": "Professional responsibility, privacy, algorithmic bias, intellectual property, data protection regulation and social impacts of computing."
+      },
+      {
+        "courseId": "D036",
+        "moduleId": "SEC",
+        "score": 0.48597008116025026,
+        "evidence": "Data protection regulation, privacy law, contracts and compliance audits.  Students review security policies and incident reports, but cryptography, authentication, access control, threat modeling and secure coding are not covered.",
+        "requirementEvidence": "Cryptographic primitives, authentication and access control, threat modeling, software vulnerabilities, secure protocols and incident response."
+      },
+      {
+        "courseId": "D036",
+        "moduleId": "STAT",
+        "score": 0.30230103597697155,
+        "evidence": "Data protection regulation, privacy law, contracts and compliance audits.  Students review security policies and incident reports, but cryptography, authentication, access control, threat modeling and secure coding are not covered.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      }
+    ],
+    "D037": [
+      {
+        "courseId": "D037",
+        "moduleId": "CV",
+        "score": 0.2684602715229452,
+        "evidence": "Painting, sculpture and architecture in fifteenth-century Italy.  Students analyze patronage, perspective and visual symbolism in primary sources and museum collections.",
+        "requirementEvidence": "Image formation and filtering, feature detection, camera geometry, stereo vision, object recognition, convolutional neural networks and visual scene understanding."
+      },
+      {
+        "courseId": "D037",
+        "moduleId": "GRAPH",
+        "score": 0.18070716961242897,
+        "evidence": "Painting, sculpture and architecture in fifteenth-century Italy.  Students analyze patronage, perspective and visual symbolism in primary sources and museum collections.",
+        "requirementEvidence": "Rasterization, geometric transformations, shading models, texture mapping, ray tracing, animation and real-time rendering pipelines."
+      },
+      {
+        "courseId": "D037",
+        "moduleId": "ROB",
+        "score": 0.12183440979166248,
+        "evidence": "Painting, sculpture and architecture in fifteenth-century Italy.  Students analyze patronage, perspective and visual symbolism in primary sources and museum collections.",
+        "requirementEvidence": "Robot kinematics, dynamics, motion planning, control, sensor fusion, localization and perception for autonomous systems."
+      }
+    ],
+    "D038": [
+      {
+        "courseId": "D038",
+        "moduleId": "NLP",
+        "score": 0.2222201148294143,
+        "evidence": "Comparative readings of epic, novel and drama across cultures.  Students examine narrative voice, translation and historical context in seminar discussions and essays.",
+        "requirementEvidence": "Text normalization, tokenization, language models, word and sentence embeddings, syntactic parsing, machine translation and transformer architectures."
+      },
+      {
+        "courseId": "D038",
+        "moduleId": "HCI",
+        "score": 0.12554366937723097,
+        "evidence": "Comparative readings of epic, novel and drama across cultures.  Students examine narrative voice, translation and historical context in seminar discussions and essays.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D038",
+        "moduleId": "SE",
+        "score": 0.0789926412585575,
+        "evidence": "Comparative readings of epic, novel and drama across cultures.  Students examine narrative voice, translation and historical context in seminar discussions and essays.",
+        "requirementEvidence": "Requirements analysis, modular and object-oriented design, version control, unit and integration testing, agile teamwork and software maintenance."
+      }
+    ],
+    "D039": [
+      {
+        "courseId": "D039",
+        "moduleId": "NUM",
+        "score": 0.36196396777379664,
+        "evidence": "Scales, intervals, harmony, counterpoint and musical form.  Students analyze scores, complete voice-leading exercises and compose short tonal pieces.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      },
+      {
+        "courseId": "D039",
+        "moduleId": "HCI",
+        "score": 0.3310853993151011,
+        "evidence": "Scales, intervals, harmony, counterpoint and musical form.  Students analyze scores, complete voice-leading exercises and compose short tonal pieces.",
+        "requirementEvidence": "Interaction design, usability principles, prototyping, user studies, accessibility, evaluation methods and human factors in interface development."
+      },
+      {
+        "courseId": "D039",
+        "moduleId": "STAT",
+        "score": 0.27510618205748105,
+        "evidence": "Scales, intervals, harmony, counterpoint and musical form.  Students analyze scores, complete voice-leading exercises and compose short tonal pieces.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      }
+    ],
+    "D040": [
+      {
+        "courseId": "D040",
+        "moduleId": "ETH",
+        "score": 0.18904754440242294,
+        "evidence": "Externalities, public goods, pollution pricing and cost-benefit analysis.  Students evaluate environmental policy instruments using microeconomic models and case studies.",
+        "requirementEvidence": "Professional responsibility, privacy, algorithmic bias, intellectual property, data protection regulation and social impacts of computing."
+      },
+      {
+        "courseId": "D040",
+        "moduleId": "STAT",
+        "score": 0.16893110580937623,
+        "evidence": "Externalities, public goods, pollution pricing and cost-benefit analysis.  Students evaluate environmental policy instruments using microeconomic models and case studies.",
+        "requirementEvidence": "Random variables, probability distributions, conditional probability, expectation, statistical estimation, confidence intervals, hypothesis testing and regression."
+      },
+      {
+        "courseId": "D040",
+        "moduleId": "NUM",
+        "score": 0.14311097689273505,
+        "evidence": "Externalities, public goods, pollution pricing and cost-benefit analysis.  Students evaluate environmental policy instruments using microeconomic models and case studies.",
+        "requirementEvidence": "Floating-point arithmetic, numerical linear algebra, iterative solvers, interpolation, numerical integration, stability and error analysis."
+      }
+    ]
+  }
+}

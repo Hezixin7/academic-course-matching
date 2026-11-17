@@ -253,7 +253,7 @@ function report(t) {
   }`;
 }
 function guide() {
-  return `<section class="heading"><div><div class="eyebrow">RETRIEVE. REASON. VERIFY.</div><h1>每个判定，都要有依据<span>。</span></h1><p>这是包含后端 LLM 判定的两阶段匹配项目。</p></div></section><section class="panel guide-panel"><h2>01 / 资料导入</h2><p>支持 CSV、TSV、JSON、TXT、Markdown、文字型 PDF 与 DOCX。单文件 10 MB，每类最多 150 行，PDF 最多 80 页；复杂表格需人工整理，扫描件暂不支持 OCR。</p>${types.map((type) => `<div class="format-example"><h3>${labels[type]}<button class="text-button" data-action="template" data-type="${type}">下载模板</button></h3><code>${headers[type].join(", ")}</code></div>`).join("")}<h2>02 / 召回、判定与校验</h2><p>本地 MiniLM 使用课程描述向量召回 Top-3 模块；课程名称只用于展示与关联。长描述最多处理前 8 个片段，英文语义效果更稳。完整模式把课程描述和候选要求发送到后端配置的模型服务；API Key 仅存于后端 .env，不进入浏览器。</p><p>LLM 返回匹配、部分匹配、不匹配或证据不足，以及理由和两侧原文引用。后端严格检查字段、编号、数量及引用是否来自相应原文。格式错误、引用伪造、超时或服务失败均进入待复核，不生成可计分建议。引用校验只证明出处，不能证明模型判断正确。</p><p>没有密钥时可以选择仅检索预览，该模式不调用 LLM、不自动分配学分，界面会明确标注。</p><h2>03 / 人工复核与学分</h2><p>所有建议均需人工确认。唯一完整匹配可获得全额预算初稿；存在多个完整匹配时，各条初始分配为 0，交由用户拆分；部分匹配初始也为 0。没有按相似度自动推断内容覆盖比例。你可以人工增删、重新指定模块并记录依据。</p><p>默认 1 中国学分 = 1.5 ECTS，是可调整的估算值。每门课预算是原始学分乘系数，保留两位小数；所有模块上的分配总和不能超过预算。编辑与重算只执行本地确定性逻辑，不重新执行 embedding、不调用 LLM。修改后需要重新复核。</p><h2>04 / 运行记录与保存</h2><p>界面展示模型、Prompt 版本、token 用量、重试、缓存与耗时。相同输入、模型及 Prompt 的有效结果可缓存 24 小时；缓存不保存密钥。后端 .data/traces.jsonl 仅记录输入哈希与运行元数据，缓存含模型输出引用，应视作私人材料。</p><p>浏览器 localStorage 保存资料和结果，不跨设备同步。原始文件不上传，但完整模式需要发送描述文本到你选择的模型服务。取消只能停止后续处理，已发出的远程请求可能仍执行。没有公开部署所需的多用户认证，请保持本地访问。</p><button class="button danger" data-action="reset">清除本浏览器的项目资料</button></section>`;
+  return `<section class="heading"><div><div class="eyebrow">RETRIEVE. REASON. VERIFY.</div><h1>每个判定，都要有依据<span>。</span></h1><p>这是包含后端 LLM 判定的两阶段匹配项目。</p></div></section><section class="panel guide-panel"><h2>01 / 资料导入</h2><p>支持 CSV、TSV、JSON、TXT、Markdown、文字型 PDF 与 DOCX。单文件 10 MB，每类最多 150 行，PDF 最多 80 页；复杂表格需人工整理，扫描件暂不支持 OCR。</p>${types.map((type) => `<div class="format-example"><h3>${labels[type]}<button class="text-button" data-action="template" data-type="${type}">下载模板</button></h3><code>${headers[type].join(", ")}</code></div>`).join("")}<h2>02 / 召回、判定与校验</h2><p>本地 MiniLM 使用课程描述向量召回 Top-3 模块；课程名称只用于展示与关联。长描述最多处理前 8 个片段，英文语义效果更稳。完整模式把课程描述和候选要求发送到后端配置的模型服务；API Key 仅存于后端 .env，不进入浏览器。</p><p>LLM 返回匹配、部分匹配、不匹配或证据不足，以及理由和两侧原文引用。后端严格检查字段、编号、数量及引用是否来自相应原文。格式错误、引用伪造、超时或服务失败均进入待复核，不生成可计分建议。引用校验只证明出处，不能证明模型判断正确。</p><p>没有密钥时可以选择仅检索预览，该模式不调用 LLM、不自动分配学分，界面会明确标注。</p><h2>03 / 人工复核与学分</h2><p>所有建议均需人工确认。唯一完整匹配可获得全额预算初稿；存在多个完整匹配时，各条初始分配为 0，用户只能选择其中一个模块并整门分配，不能拆分；部分匹配初始也为 0。没有按相似度自动推断内容覆盖比例。你可以人工增删、重新指定模块并记录依据。</p><p>默认 1 中国学分 = 1.5 ECTS，是可调整的估算值。每门课预算是原始学分乘系数，保留两位小数；一门课程只能分配到一个目标模块，且必须 0 或整门预算，不能重复使用。编辑与重算只执行本地确定性逻辑，不重新执行 embedding、不调用 LLM。修改后需要重新复核。</p><h2>04 / 运行记录与保存</h2><p>界面展示模型、Prompt 版本、token 用量、重试、缓存与耗时。相同输入、模型及 Prompt 的有效结果可缓存 24 小时；缓存不保存密钥。后端 .data/traces.jsonl 仅记录输入哈希与运行元数据，缓存含模型输出引用，应视作私人材料。</p><p>浏览器 localStorage 保存资料和结果，不跨设备同步。原始文件不上传，但完整模式需要发送描述文本到你选择的模型服务。取消只能停止后续处理，已发出的远程请求可能仍执行。没有公开部署所需的多用户认证，请保持本地访问。</p><button class="button danger" data-action="reset">清除本浏览器的项目资料</button></section>`;
 }
 
 function openEditor(type, raw = "", name = "手动输入", error = "") {
@@ -497,6 +497,7 @@ async function runMatch() {
           });
           try {
             if (stopped) throw new Error("先前调用失败，已停止后续请求。");
+            //
             const response = await fetch("/api/classify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -613,10 +614,10 @@ function editEdge(id, changes, action) {
 }
 function addDialog() {
   const dialog = $("#editor");
-  dialog.innerHTML = `<form method="dialog" class="add-form"><div class="dialog-head"><h2>手动添加匹配</h2><button class="icon-button" aria-label="关闭">✕</button></div><p>可把一门课拆分至多个模块。添加后请记录原文依据并复核。</p><label>原始课程<select id="add-course">${courses()
+  dialog.innerHTML = `<form method="dialog" class="add-form"><div class="dialog-head"><h2>手动添加匹配</h2><button class="icon-button" aria-label="关闭">✕</button></div><p>一门课程只能分配到一个目标模块，且必须 0 或按整门课程预算全额分配。更换模块请使用表格中的模块选择。添加后请记录原文依据并复核。</p><label>原始课程<select id="add-course">${courses()
     .map(
       (c) =>
-        `<option value="${esc(c.id)}">${esc(c.id)} · ${esc(c.name)}（剩余 ${fmt(round(c.credits * state.factor - totals().totals[c.id]))} ECTS）</option>`,
+        `<option value="${esc(c.id)}">${esc(c.id)} · ${esc(c.name)}（整门预算 ${fmt(round(c.credits * state.factor))} ECTS）</option>`,
     )
     .join(
       "",
@@ -624,7 +625,7 @@ function addDialog() {
     .map((m) => `<option value="${esc(m.id)}">${esc(m.name)}</option>`)
     .join(
       "",
-    )}</select></label><label>分配 ECTS<input id="add-ects" type="number" value="0" min="0" step="0.01"></label><label>复核依据<textarea id="add-note" placeholder="说明课程内容与模块要求的关系"></textarea></label><p class="inline-error" id="add-error"></p><div class="dialog-foot"><button class="button secondary">取消</button><button class="button primary" type="button" data-action="save-add">添加并复核 ${icon("plus")}</button></div></form>`;
+    )}</select></label><label>分配 ECTS（0 或整门预算）<input id="add-ects" type="number" value="0" min="0" step="0.01"></label><label>复核依据<textarea id="add-note" placeholder="说明课程内容与模块要求的关系"></textarea></label><p class="inline-error" id="add-error"></p><div class="dialog-foot"><button class="button secondary">取消</button><button class="button primary" type="button" data-action="save-add">添加并复核 ${icon("plus")}</button></div></form>`;
   dialog.showModal();
 }
 function saveAdd() {
@@ -842,21 +843,38 @@ document.addEventListener("change", (e) => {
     );
   } else if (el.dataset.module) {
     const m = modules().find((m) => m.id === el.value);
-    editEdge(
-      el.dataset.module,
-      {
-        moduleId: el.value,
-        llmDecision: "manual",
-        llmReason: "人工修改了目标模块，原 LLM 判定不再适用。",
-        validation: null,
-        modelTraceId: null,
-        status: "pending",
-        manual: true,
-        score: null,
-        requirementEvidence: m.description,
-        requirementSource: m.source,
-      },
-      "人工调整目标模块",
+    const edge = state.edges.find((x) => x.id === el.dataset.module);
+    const duplicate = state.edges.find(
+      (x) =>
+        x.id !== edge.id &&
+        x.courseId === edge.courseId &&
+        x.moduleId === el.value,
+    );
+    const removable = duplicate?.ects === 0 ? duplicate : null;
+    const next = state.edges
+      .filter((x) => x !== removable)
+      .map((x) =>
+        x.id === edge.id
+          ? {
+              ...x,
+              moduleId: el.value,
+              llmDecision: "manual",
+              llmReason: "人工修改了目标模块，原 LLM 判定不再适用。",
+              validation: null,
+              modelTraceId: null,
+              status: "pending",
+              manual: true,
+              score: null,
+              requirementEvidence: m.description,
+              requirementSource: m.source,
+            }
+          : x,
+      );
+    updateEdges(
+      next,
+      removable
+        ? "人工调整目标模块，并移除同课程的重复零分配匹配"
+        : "人工调整目标模块",
     );
   } else if (el.dataset.note) {
     const edge = state.edges.find((x) => x.id === el.dataset.note);
@@ -870,24 +888,19 @@ document.addEventListener("change", (e) => {
       old = state.factor;
     try {
       if (!el.value) throw new Error("请填写有效系数");
+      const courseById = new Map(courses().map((c) => [c.id, c]));
       const edges = state.edges.map((x) => ({
         ...x,
-        ects: round((x.ects * next) / old),
+        ects:
+          x.ects > 0
+            ? round(courseById.get(x.courseId).credits * next)
+            : 0,
         status: "pending",
       }));
-      for (const c of courses()) {
-        const items = edges.filter((x) => x.courseId === c.id);
-        const sum = round(items.reduce((s, x) => s + x.ects, 0));
-        const budget = round(c.credits * next);
-        if (sum > budget && items.length)
-          items[items.length - 1].ects = round(
-            items[items.length - 1].ects - (sum - budget),
-          );
-      }
       calculate(courses(), modules(), edges, next);
       state.factor = next;
       state.edges = edges;
-      audit(`换算系数由 ${old} 调整为 ${next}；按比例重算分配`);
+      audit(`换算系数由 ${old} 调整为 ${next}；按整门预算重算分配`);
       save();
       render();
       toast("已按新系数重算，相关匹配需要重新复核");

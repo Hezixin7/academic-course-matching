@@ -148,9 +148,23 @@ test("real upload -> parse -> match -> evidence -> edit -> confirm -> export, wi
   assert($(".evidence-row blockquote").textContent.length > 30);
   const input = $("[data-ects]");
   const old = Number(input.value);
+  // A partial allocation is rejected; the previous full budget is retained.
   input.value = String(old - 0.5);
   input.dispatchEvent(new w.Event("change", { bubbles: true }));
-  assert.equal(saved().edges[0].ects, old - 0.5);
+  assert.equal(saved().edges[0].ects, old);
+  assert.match($("#toast").textContent, /只能分配 0 或/);
+  assert.equal(created, 1);
+  // Full -> unallocated -> full is a valid deterministic manual edit.
+  const allocate = (value) => {
+    const field = $("[data-ects]");
+    field.value = String(value);
+    field.dispatchEvent(new w.Event("change", { bubbles: true }));
+  };
+  allocate(0);
+  assert.equal(saved().edges[0].ects, 0);
+  assert.equal(created, 1);
+  allocate(old);
+  assert.equal(saved().edges[0].ects, old);
   assert.equal(created, 1);
   click('[data-action="confirm"]');
   assert.equal(saved().edges[0].status, "confirmed");
@@ -163,33 +177,37 @@ test("real upload -> parse -> match -> evidence -> edit -> confirm -> export, wi
   excess.dispatchEvent(new w.Event("change", { bubbles: true }));
   assert.equal(saved().edges[0].ects, stable);
   assert.match($("#toast").textContent, /超过可用/);
-  // Lower the conversion factor: deterministic scaling, no model call, review reset.
+  // Lower the conversion factor: deterministic full-budget scaling, no model call, review reset.
   const factor = $("#credit-factor");
   factor.value = "1";
   factor.dispatchEvent(new w.Event("change", { bubbles: true }));
   assert.equal(saved().factor, 1);
   assert(saved().edges.every((e) => e.status === "pending"));
   assert.equal(created, 1);
-  // Reassign to another target and see the new requirement evidence, not the old one.
+  // Reassign to a module that currently has a zero-ECTS candidate edge:
+  // full budget and evidence move, and the duplicate zero edge is removed.
   const select = $("[data-module]");
   const firstId = select.dataset.module;
-  const target = DEMO.requirements.find(
-    (m) =>
-      m.id !== select.value &&
-      !saved().edges.some(
-        (e) =>
-          e.courseId === saved().edges.find((x) => x.id === firstId).courseId &&
-          e.moduleId === m.id,
-      ),
+  const firstEdge = saved().edges.find((e) => e.id === firstId);
+  const zeroPeer = saved().edges.find(
+    (e) => e.courseId === firstEdge.courseId && e.ects === 0,
   );
+  const target = DEMO.requirements.find((m) => m.id === zeroPeer.moduleId);
+  const edgeCountBefore = saved().edges.length;
   select.value = target.id;
   select.dispatchEvent(new w.Event("change", { bubbles: true }));
+  const moved = saved().edges.find((e) => e.id === firstId);
+  assert.equal(moved.moduleId, target.id);
+  assert.equal(moved.requirementEvidence, target.description);
   assert.equal(
-    saved().edges.find((e) => e.id === firstId).requirementEvidence,
-    target.description,
+    moved.ects,
+    DEMO.transcript.find((c) => c.id === moved.courseId).credits,
   );
+  assert(!saved().edges.some((e) => e.id === zeroPeer.id));
+  assert.equal(saved().edges.length, edgeCountBefore - 1);
   assert.equal(created, 1);
-  // Add a second independent edge using released credit, then remove it.
+  // Splitting a course across target modules is rejected in the UI.
+  const beforeAdd = saved().edges.length;
   click('[data-action="add"]');
   $("#add-course").value = "CS101";
   $("#add-module").value = DEMO.requirements.find(
@@ -199,11 +217,25 @@ test("real upload -> parse -> match -> evidence -> edit -> confirm -> export, wi
   $("#add-ects").value = ".25";
   $("#add-note").value = "Manual check of the uploaded syllabus";
   click('[data-action="save-add"]');
-  assert(saved().edges.some((e) => e.note.includes("Manual check")));
+  assert.match($("#add-error").textContent, /多个目标模块/);
+  assert.equal(saved().edges.length, beforeAdd);
+  assert(!saved().edges.some((e) => e.note.includes("Manual check")));
   assert.equal(created, 1);
-  const last = saved().edges.at(-1);
-  click(`[data-action="remove"][data-id="${last.id}"]`);
-  assert(!saved().edges.some((e) => e.id === last.id));
+  $("#editor").close();
+  // Removing an unallocated edge keeps allocated credit unchanged.
+  const allocatedBefore = saved().edges
+    .filter((e) => e.ects > 0)
+    .reduce((sum, e) => sum + e.ects, 0);
+  const zeroEdge = saved().edges.find((e) => e.ects === 0);
+  click(`[data-action="remove"][data-id="${zeroEdge.id}"]`);
+  assert(!saved().edges.some((e) => e.id === zeroEdge.id));
+  assert.equal(
+    saved().edges
+      .filter((e) => e.ects > 0)
+      .reduce((sum, e) => sum + e.ects, 0),
+    allocatedBefore,
+  );
+  assert.equal(created, 1);
   // Export artifacts contain evidence, statuses, credit rule and all current changes.
   const blobs = [];
   w.URL.createObjectURL = (b) => {
